@@ -3,7 +3,7 @@ session_name("SEEDQUEST");
 session_start();
 
 require('config.inc.php');
-require('../bip39/bip39.php');
+require('lib/bip39.php');
 
 if (!isset($_SESSION['choices']) || count($_SESSION['choices']) < (WORLDS * ITEMS)) {
 	header("Location: /");
@@ -34,7 +34,7 @@ for ($i = 0; $i < WORLDS; $i++) {
 	}
 }
 
-$dict = file(__DIR__ . '/../bip39/english.txt', FILE_IGNORE_NEW_LINES);
+$dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 $words = encode($dict, $index/8, $bits);
 ?>
 <!doctype html>

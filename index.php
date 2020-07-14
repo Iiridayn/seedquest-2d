@@ -22,8 +22,8 @@ if (isset($_POST['back'])) {
 }
 
 if (isset($_POST['words'])) {
-	require('../bip39/bip39.php');
-	$dict = file(__DIR__ . '/../bip39/english.txt', FILE_IGNORE_NEW_LINES);
+	require('lib/bip39.php');
+	$dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 	$bytes = decode(trim($_POST['words']), $dict);
 	if ($bytes !== false && strlen($bytes) >= 16) {
 		$_SESSION['seed'] = array(
