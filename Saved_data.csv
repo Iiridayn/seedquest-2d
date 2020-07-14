@@ -255,4 +255,3 @@ AI Station,NPCBase_AI,Space,15,12,null,Show Weather Report.,Space_AI_ShowWeather
 Inspect Bugs,AlienBug,Space,15,13,null,They Seem Uninterested,VFX_Bugs,They Seem Happy,VFX_Bugs_G,They Seem Angry,VFX_Bugs_R,They're Swarming,VFX_Bugs_Swarm
 Harvest Plants,HologramDeck,Space,15,14,null,Gangly,PlantHarvester2,Hungry,PlantHarvester4 Variant,Mushroomy,PlantHarvester3 Variant,Normal,PlantHarvester1
 Study Alien Growth,Sample,Space,15,15,null,Take Sample,Sample,Check Reading,Sample_Geigar,Disect,Sample_Scaple,Observe,Sample_MagnifyingGlass
-

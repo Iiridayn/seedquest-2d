@@ -11,13 +11,15 @@ while (($data = fgetcsv($f)) !== false) {
 		$headers = array_flip($data);
 		continue;
 	}
-	if (!isset($map[$data[$headers['Scene ID']]])) {
-		$map[$data[$headers['Scene ID']]] = array(
+
+	$scene = $data[$headers['Scene ID']];
+	if (!isset($map[$scene])) {
+		$map[$scene] = array(
 			'name' => $data[$headers['Scene Name']],
 			'items' => array(),
 		);
 	}
-	$map[$data[$headers['Scene ID']]]['items'][$data[$headers['Interactable ID']]] = array(
+	$map[$scene]['items'][$data[$headers['Interactable ID']]] = array(
 		'name' => $data[$headers['Interactable Name']] ?: $data[$headers['Object Name']],
 		'options' => array(
 			$data[$headers['Action One']],
