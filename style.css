@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+html, body, body > form {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: 'Rubik', sans-serif;
+}
+h1 {
+	text-transform: uppercase;
+	margin: 0.5em 0;
+	font-weight: 500;
+}
+
+ul, ol {
+	list-style-type: none;
+	padding: 0;
+}
+li {
+	display: inline-block;
+	position: relative;
+}
+
+li label {
+	position: absolute;
+	bottom: 10%;
+	left: 0;
+	right: 0;
+	color: white;
+	text-shadow: black 0 0 0.3em;
+
+	font-weight: 500;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+p.aside {
+	font-size: small;
+}
+
+button, a.button {
+	color: white;
+	background-color: #225a80;
+	padding: 1em 2em;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+	border-style: none;
+}
+button.link {
+	color: #225a80;
+	text-decoration: underline;
+	border: 0;
+	padding: 0;
+	background: none;
+	font: inherit;
+}
+button.link:active {
+	color: red;
+}
+
+a.button {
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+}
+
+/* Multiple */
+main.menu {
+	padding: 2em 10%;
+	background-color: white;
+}
+
+.form-footer {
+	text-align: center;
+}
+
+figure {
+	margin: 0;
+}
+figcaption p, figcaption h2 {
+	margin: 0;
+	white-space: nowrap;
+}
+
+/* Done */
+#done h1 img {
+	height: 1.3em;
+	position: relative;
+	top: 0.2em;
+	left: 0.2em;
+}
+
+section#seed {
+	padding: 3em 2em;
+	border: 2px solid #225a80;
+	border-radius: 5px;
+	margin-bottom: 2em;
+	margin-top: 2em;
+	user-select: all;
+}
+
+main#done button {
+	margin-right: 1em;
+}
+main#done aside {
+	display: inline-block;
+	position: relative;
+	top: 1em;
+}
+main#done p {
+	font-size: 75%;
+}
+main#done aside p.small {
+	font-style: italic;
+	font-size: 60%;
+}
+
+/* World */
+main#world {
+	overflow: hidden;
+	position: relative;
+	height: calc(100% - 48px);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+#bg {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+header {
+	background-color: white;
+	color: #225a80;
+	padding: 10px;
+	box-sizing: border-box;
+	overflow: hidden;
+	height: 48px;
+}
+
+.progress-bar {
+	width: 40%;
+	height: 28px;
+	background-color: rgb(200, 200, 200);
+	border-radius: 5px;
+	overflow: hidden;
+	position: absolute;
+	top: 10px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.completion {
+	background-color: green;
+	height: 100%;
+}
+
+header button {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+header button[name="undo"] {
+	position: absolute;
+	top: 10px;
+	right: 15%;
+}
+header button[name="undo"] img {
+	height: 0.8em;
+	margin-right: 0.3em;
+}
+header span#world-name {
+	text-align: right;
+	position: absolute;
+	right: 71%;
+	top: 15px;
+}
+
+#objective {
+	position: fixed;
+	background-color: rgba(100,100,100,0.5);
+	width: 600px;
+	height: 600px;
+	border-radius: 300px;
+	border: 10px solid black;
+	right: -300px;
+	bottom: -300px;
+	pointer-events: none;
+}
+#objective img {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	left: 15%;
+	top: 15%;
+}
+#objective figcaption {
+	position: absolute;
+	bottom: calc(60% - 1em - 150px);
+	left: 15%;
+	top: calc(15% + 150px);
+}
+
+button[name="world"], button[name="item"], button[name="choice"] {
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+}
+
+ul#items {
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+#preview ol {
+	text-align: center;
+}
+#preview ol li {
+	margin-right: 3em;
+	position: relative;
+	width: calc(100%/3 - 3.5em);
+	max-width: 300px;
+}
+#preview .joiner {
+	font-weight: bold;
+	font-size: 200%;
+	position: absolute;
+	top: calc((100% - 2em) * .4);
+	left: -1.3em;
+}
+#preview .form-footer button {
+	padding-left: 4em;
+	padding-right: 4em;
+}
+#preview-items img {
+	width: 100%;
+	max-width: 300px;
+}
+
+/* Worlds */
+ol#worlds {
+	width: 80%;
+	margin: 0 auto;
+	clear: left;
+}
+ol#worlds li {
+	width: calc(100%/8 - 5px);
+}
+
+ol#worlds .scene-marker {
+	position: absolute;
+	top: 0.25em;
+	left: 0.25em;
+	background-color: black;
+	padding: 0.25em 0;
+	text-align: center;
+	width: 1em;
+	display: inline-block;
+}
+ol#worlds .scene-marker-2 {
+	left: calc(0.25em + (100%/6 - 0.5em) * 2);
+}
+ol#worlds .scene-marker-3 {
+	left: calc(0.25em + (100%/6 - 0.5em) * 3);
+}
+ol#worlds .scene-marker-4 {
+	left: calc(0.25em + (100%/6 - 0.5em) * 4);
+}
+ol#worlds .scene-marker-5 {
+	left: calc(0.25em + (100%/6 - 0.5em) * 5);
+}
+ol#worlds .scene-marker-6 {
+	left: calc(0.25em + (100%/6 - 0.5em) * 6);
+}
+
+#world-selection a.button.continue {
+	margin-right: 1em;
+}
+#world-selection h1 {
+	float: left;
+	margin-right: 1em;
+}
+#world-selection p.desc {
+	float: left;
+	font-size: 75%;
+	position: relative;
+	top: 0.7em;
+}
+
+button[name="world"] {
+	position: relative;
+	overflow: hidden;
+	float: left; /* remove hidden content from flow */
+	border-radius: 5px;
+}
+button[name="world"] label {
+	font-weight: bold;
+	text-align: center;
+}
+button[name="world"] img {
+	/*margin-top: -186px;*/
+	width: 100%;
+	height: 5em;
+	object-fit: cover; /* bans all versions of IE */
+}
+
+ol#selected {
+	margin: 1em auto;
+}
+ol#selected li {
+	width: calc(100%/6 - 5px);
+	height: 15em;
+	overflow: hidden;
+}
+ol#selected .empty {
+	background-color: grey;
+}
+ol#selected img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+ol#selected label {
+	font-size: 75%;
+}
+ol#selected label span {
+	font-size: 300%;
+	margin-right: 0.2em;
+	margin-left: 0.3em;
+}
+
+/* Index */
+#mode-select {
+	margin-top: 5em;
+	text-align: center;
+}
+#biglogo {
+	width: 10%;
+	margin: 0 auto;
+}
+#mode-select button img {
+	height: 1em;
+	margin-right: 1em;
+}
+#mode-select button[value="encode"] img {
+	position: relative;
+	top: 5px;
+}
+
+input[name="words"] {
+	padding: 1em;
+	padding-right: 3em;
+	width: 28em;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+#input-wrapper {
+	position: relative;
+	width: 30em;
+}
+#input-wrapper img {
+	position: relative;
+	top: 0.8em;
+	height: 2em;
+	left: 0.5em;
+}
+#input-wrapper img.success, #input-wrapper img.warning {
+	position: absolute;
+	left: 20.5em;
+	top: 0.6em;
+}
+#input-wrapper p {
+	font-style: italic;
+	font-size: 60%;
+	display: inline-block;
+}
+#input-wrapper p.warning, #input-wrapper p.success {
+	text-align: right;
+	float: right;
+	margin-right: 11em;
+}
+#input-wrapper p.warning {
+	color: red;
+}
+#encode-select button[type='submit'] {
+	margin-top: 1em;
+}
