@@ -16,6 +16,7 @@ h1 {
 ul, ol {
 	list-style-type: none;
 	padding: 0;
+	margin: 0;
 }
 li {
 	display: inline-block;
@@ -82,6 +83,12 @@ figure {
 figcaption p, figcaption h2 {
 	margin: 0;
 	white-space: nowrap;
+}
+
+button[name="world"], button[name="item"], button[name="choice"] {
+	padding: 0;
+	border: 0;
+	background-color: transparent;
 }
 
 /* Done */
@@ -175,11 +182,16 @@ header button[name="undo"] img {
 	height: 0.8em;
 	margin-right: 0.3em;
 }
+header span {
+	position: absolute;
+	top: 15px;
+}
 header span#world-name {
 	text-align: right;
-	position: absolute;
 	right: 71%;
-	top: 15px;
+}
+header span.progress-count {
+	left: calc(70% + 0.5em);
 }
 
 #objective {
@@ -207,16 +219,6 @@ header span#world-name {
 	top: calc(15% + 150px);
 }
 
-button[name="world"], button[name="item"], button[name="choice"] {
-	padding: 0;
-	border: 0;
-	background-color: transparent;
-}
-
-ul#items {
-	overflow-x: scroll;
-	white-space: nowrap;
-}
 #preview ol {
 	text-align: center;
 }
@@ -241,6 +243,39 @@ ul#items {
 	width: 100%;
 	max-width: 300px;
 }
+
+/* World - unordered */
+main#world.list ul#item-list {
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+/* World - ordered */
+main#world.positions #items h1 {
+	display: none;
+}
+main#world.positions ul#item-list li {
+	position: absolute;
+}
+main#world.positions ul#item-list li:hover {
+	z-index: 1;
+}
+
+main#world.positions #choices {
+	position: absolute;
+	top: 5em;
+	left: 0;
+	right: 0;
+	width: calc(300px + 0.5em);
+	margin: 0 auto;
+	padding: 0.5em;
+	background-color: white;
+}
+
+main#world.positions #choices button[name="undo"] {
+	float: right;
+}
+
 
 /* Worlds */
 ol#worlds {

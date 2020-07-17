@@ -106,35 +106,54 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 		<div class="progress-bar">
 			<div class="completion" style="width:<?= (count($_SESSION['choices']) / (ITEMS * WORLDS)) * 100 ?>%"></div>
 		</div>
+		<span class="progress-count"><?= count($_SESSION['choices']) ?>/<?= WORLDS * ITEMS ?></span>
 		<button type="submit" name="undo"><img src="img/undoarrow2.png" />Undo</button>
 	</header>
-	<main id="world" style="background-image: url(img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)">
-		<section>
+	<main id="world" style="background-image: url(img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= defined('ORDERED') ? 'positions' : 'list' ?>">
+		<section id="items">
 			<h1>Choose an Item</h1>
-			<ul id="items" data-world="<?= $world ?>">
+			<ul id="item-list" data-world="<?= $world ?>">
 			<?php
 				$randomized = range(0, 15);
-				shuffle($randomized);
+				$item_size = 200;
+				$option_size = 200;
+				if (!defined('ORDERED')) {
+					shuffle($randomized);
+				} else {
+					$item_size = 100;
+					$option_size = 150;
+					// paint lowest positions first, to not overlap text at bottom
+					usort($randomized, function($a, $b) use ($world, $positions) {
+						if ($positions[$world][$a][0] == $positions[$world][$b][0])
+							return 0;
+						return $positions[$world][$a][0] > $positions[$world][$b][0] ? -1 : 1;
+					});
+				}
 			?>
 			<?php for ($i = 0; $i < 16; $i++): ?>
-			<li class="item"><button type="submit" name="item" value="<?= $randomized[$i] ?>">
-			<?php
-				$label = $map[$world]['items'][$randomized[$i]]['name'];
-				$filename = $world . '-' . $randomized[$i] . '-d.png';
-			?>
-				<label><?= $label ?></label>
-				<img width=200 height=200 src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
-			</button></li>
+			<li class="item" style="top: <?= $positions[$world][$randomized[$i]][0] ?>%; left: <?= $positions[$world][$randomized[$i]][1] ?>%">
+				<button type="submit" name="item" value="<?= $randomized[$i] ?>">
+				<?php
+					$label = $map[$world]['items'][$randomized[$i]]['name'];
+					$filename = $world . '-' . $randomized[$i] . '-d.png';
+				?>
+					<label><?= $label ?></label>
+					<?php // TODO: change image if set to new image ?>
+					<img width=<?= $item_size ?> height=<?= $item_size ?> src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
+				</button>
+			</li>
 			<?php endfor; ?>
 			</ul>
 		</section>
 		<?php if (isset($_SESSION['item'])): ?>
-		<section>
-			<h1>Choose a State</h1>
-			<ul id="choices" data-item="<?= $i ?>">
+		<section id="choices">
+			<button name="undo">x</button>
+			<h1><?= $map[$world]['items'][$_SESSION['item']]['name'] ?></h1>
+			<ul data-item="<?= $i ?>">
 			<?php
 				$randomized = range(0, 3);
-				shuffle($randomized);
+				if (!defined('ORDERED'))
+					shuffle($randomized);
 			?>
 			<?php for ($i = 0; $i < 4; $i++): ?>
 			<?php
@@ -143,13 +162,12 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 			?>
 				<li class="choice"><button type="submit" name="choice" value="<?= $randomized[$i] ?>">
 					<label><?= $label ?></label>
-					<img width=200 height=200 src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
+					<img width=<?= $option_size ?> height=<?= $option_size ?> src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
 				</button></li>
 			<?php endfor; ?>
 			</ul>
 		<?php endif; ?>
 		</section>
-	<?php endif; ?>
 	</main>
 	<?php if (isset($_SESSION['seed'])): ?>
 	<figure id="objective">
