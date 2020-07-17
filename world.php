@@ -131,12 +131,24 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 				}
 			?>
 			<?php for ($i = 0; $i < 16; $i++): ?>
-			<li class="item" style="top: <?= $positions[$world][$randomized[$i]][0] ?>%; left: <?= $positions[$world][$randomized[$i]][1] ?>%">
-				<button type="submit" name="item" value="<?= $randomized[$i] ?>">
-				<?php
-					$label = $map[$world]['items'][$randomized[$i]]['name'];
-					$filename = $world . '-' . $randomized[$i] . '-d.png';
-				?>
+			<?php
+				$which = $randomized[$i];
+
+				$label = $map[$world]['items'][$which]['name'];
+
+				$mode = 'd';
+				// change image to show last selected state
+				// like SeedQuest 3d, remember _any_ previous visit to the scene
+				foreach ($_SESSION['choices'] as $k => $v) {
+					if ($_SESSION['worlds'][(int) floor($k / ITEMS)] !== $world)
+						continue;
+					if ($v[0] == $which)
+						$mode = $v[1];
+				}
+				$filename = $world . '-' . $which . '-' . $mode . '.png';
+			?>
+			<li class="item" style="top: <?= $positions[$world][$which][0] ?>%; left: <?= $positions[$world][$which][1] ?>%">
+				<button type="submit" name="item" value="<?= $which ?>">
 					<label><?= $label ?></label>
 					<?php // TODO: change image if set to new image ?>
 					<img width=<?= $item_size ?> height=<?= $item_size ?> src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
