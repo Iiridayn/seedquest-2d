@@ -147,7 +147,7 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 				}
 				$filename = $world . '-' . $which . '-' . $mode . '.png';
 			?>
-			<li class="item" style="top: <?= $positions[$world][$which][0] ?>%; left: <?= $positions[$world][$which][1] ?? $which * (90/16) ?>%">
+			<li class="item" style="top: <?= $positions[$world][$which][0] ?>%; left: calc(<?= $positions[$world][$which][1] ?? floor(5 + $which * (90/16)) ?>% - <?= $item_size ?>px)">
 				<button type="submit" name="item" value="<?= $which ?>">
 					<label><?= $label ?></label>
 					<?php // TODO: change image if set to new image ?>
