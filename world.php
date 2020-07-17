@@ -51,7 +51,7 @@ if (isset($_POST['choice']) && (!isset($_SESSION['seed']) || $_POST['choice'] ==
 
 if (isset($_POST['undo'])) {
 	// Can't undo past a world boundary (for no good reason other than matching current system)
-	if ($_SESSION['item'])
+	if (isset($_SESSION['item']))
 		unset($_SESSION['item']);
 	else if (count($_SESSION['choices']) % ITEMS != 0)
 		array_pop($_SESSION['choices']);
@@ -147,7 +147,7 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 				}
 				$filename = $world . '-' . $which . '-' . $mode . '.png';
 			?>
-			<li class="item" style="top: <?= $positions[$world][$which][0] ?>%; left: <?= $positions[$world][$which][1] ?>%">
+			<li class="item" style="top: <?= $positions[$world][$which][0] ?>%; left: <?= $positions[$world][$which][1] ?? $which * (90/16) ?>%">
 				<button type="submit" name="item" value="<?= $which ?>">
 					<label><?= $label ?></label>
 					<?php // TODO: change image if set to new image ?>
