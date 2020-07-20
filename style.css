@@ -90,6 +90,9 @@ button[name="world"], button[name="item"], button[name="choice"] {
 	border: 0;
 	background-color: transparent;
 }
+button[name="world"] label, button[name="item"] label, button[name="choice"] label {
+	pointer-events: none;
+}
 
 /* Done */
 #done h1 img {
@@ -270,6 +273,7 @@ main#world.positions #choices {
 	margin: 0 auto;
 	padding: 0.5em;
 	background-color: white;
+	z-index: 2;
 }
 
 main#world.positions #choices button[name="undo"] {
