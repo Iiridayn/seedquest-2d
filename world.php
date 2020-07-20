@@ -37,16 +37,19 @@ if (isset($_POST['item'])) {
 if (isset($_POST['choice']) && (!isset($_SESSION['seed']) || $_POST['choice'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][1])) {
 	$_SESSION['choices'][] = array($_SESSION['item'], $_POST['choice']);
 	unset($_SESSION['item']);
+}
 
-	if (count($_SESSION['choices']) % ITEMS == 0) {
-		$_SESSION['world'] = (int) floor(count($_SESSION['choices']) / ITEMS);
-		if ($_SESSION['world'] == WORLDS) {
-			header('Location: /done.php');
-			die;
-		}
-		if (isset($_SESSION['seed']))
-			$_SESSION['preview'] = true;
+if (isset($_POST['replay'])) {
+	for ($i = 0; $i < ITEMS; $i++)
+		array_pop($_SESSION['choices']);
+} else if (isset($_POST['next'])) {
+	$_SESSION['world'] = (int) floor(count($_SESSION['choices']) / ITEMS);
+	if ($_SESSION['world'] == WORLDS) {
+		header('Location: /done.php');
+		die;
 	}
+	if (isset($_SESSION['seed']))
+		$_SESSION['preview'] = true;
 }
 
 if (isset($_POST['undo'])) {
@@ -196,6 +199,14 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 			<p><?= $item['options'][$_SESSION['seed']['choices'][$i][1]] ?></p>
 		</figcaption>
 	</figure>
+	<?php endif; ?>
+	<?php if ($_SESSION['world'] !== (int) floor(count($_SESSION['choices']) / ITEMS)): ?>
+	<section id="world-complete" class="popup">
+		<h1>World Complete!</h1>
+		<p>You did all the actions needed to advance.</p>
+		<button name="replay">Replay World</button>
+		<button name="next">Next World</button>
+	</section>
 	<?php endif; ?>
 <?php endif; ?>
 	</form>

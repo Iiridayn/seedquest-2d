@@ -247,6 +247,39 @@ header span.progress-count {
 	max-width: 300px;
 }
 
+.popup, main#world.positions #choices {
+	position: absolute;
+	top: 5em;
+	left: 0;
+	right: 0;
+	width: calc(300px + 0.5em);
+	margin: 0 auto;
+	padding: 0.5em;
+	background-color: white;
+	z-index: 2;
+	border-radius: 5px;
+}
+
+#world-complete {
+	padding: 2em;
+	margin-top: 10em;
+	text-align: center;
+}
+#world-complete p {
+	font-size: small;
+}
+#world-complete h1 {
+	font-weight: bold;
+}
+#world-complete button[name="replay"] {
+	color: #225a80;
+	border: 1px solid #225a80;
+	box-sizing: border-box;
+	background-color: white;
+	padding: calc(1em - 1px) calc(2em - 1px);
+	margin-right: 2em;
+}
+
 /* World - unordered */
 main#world.list ul#item-list {
 	overflow-x: scroll;
@@ -262,18 +295,6 @@ main#world.positions ul#item-list li {
 }
 main#world.positions ul#item-list li:hover {
 	z-index: 1;
-}
-
-main#world.positions #choices {
-	position: absolute;
-	top: 5em;
-	left: 0;
-	right: 0;
-	width: calc(300px + 0.5em);
-	margin: 0 auto;
-	padding: 0.5em;
-	background-color: white;
-	z-index: 2;
 }
 
 main#world.positions #choices button[name="undo"] {
