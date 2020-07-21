@@ -1,22 +1,6 @@
 <?php
-session_name("SEEDQUEST");
-session_start();
-
-require('config.inc.php');
-
-if (!empty($_POST) && (!isset($_POST['_csrf']) || !hash_equals($_POST['_csrf'], $_SESSION['csrf']))) {
-	$_POST = [];
-}
-$_SESSION['csrf'] = bin2hex(random_bytes(32));
-
-if (isset($_POST['reset'])) {
-	session_destroy();
-	header("Location: /");
-	die;
-}
 if (!isset($_SESSION['worlds']) || count($_SESSION['worlds']) < WORLDS) {
-	header("Location: /worlds.php");
-	die;
+	redirect("worlds");
 }
 
 if (!isset($_SESSION['world'])) {
@@ -26,53 +10,12 @@ if (!isset($_SESSION['world'])) {
 		$_SESSION['preview'] = true;
 }
 
-if (isset($_POST['start'])) {
-	$_SESSION['preview'] = false;
-}
-
-if (isset($_POST['item'])) {
-	$_SESSION['item'] = $_POST['item'];
-}
-
-if (isset($_POST['choice']) && (!isset($_SESSION['seed']) || $_POST['choice'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][1])) {
-	$_SESSION['choices'][] = array($_SESSION['item'], $_POST['choice']);
-	unset($_SESSION['item']);
-}
-
-if (isset($_POST['replay'])) {
-	for ($i = 0; $i < ITEMS; $i++)
-		array_pop($_SESSION['choices']);
-} else if (isset($_POST['next'])) {
-	$_SESSION['world'] = (int) floor(count($_SESSION['choices']) / ITEMS);
-	if ($_SESSION['world'] == WORLDS) {
-		header('Location: /done.php');
-		die;
-	}
-	if (isset($_SESSION['seed']))
-		$_SESSION['preview'] = true;
-}
-
-if (isset($_POST['undo'])) {
-	// Can't undo past a world boundary (for no good reason other than matching current system)
-	if (isset($_SESSION['item']))
-		unset($_SESSION['item']);
-	else if (count($_SESSION['choices']) % ITEMS != 0)
-		array_pop($_SESSION['choices']);
-	// TODO: error message??
-}
-
+$_SESSION['csrf'] = bin2hex(random_bytes(32));
 
 $world = $_SESSION['worlds'][$_SESSION['world']];
 ?>
-<!doctype html>
-<html>
-<head>
-	<title>SeedQuest</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<form method="post">
-		<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
+<form method="post">
+	<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
 <?php if ($_SESSION['preview']): ?>
 <main id="preview" class="menu">
 	<h1>Actions To Do</h1>
@@ -87,7 +30,7 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 		$item = $map[$world]['items'][$_SESSION['seed']['choices'][$i][0]];
 	?>
 		<li><figure>
-			<img src="img/scenes/<?= $filename ?>" alt="" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
+			<img src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
 			<figcaption>
 				<h2><?= $item['name'] ?></h2>
 				<p><?= $item['options'][$_SESSION['seed']['choices'][$i][1]] ?></p>
@@ -110,9 +53,9 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 			<div class="completion" style="width:<?= (count($_SESSION['choices']) / (ITEMS * WORLDS)) * 100 ?>%"></div>
 		</div>
 		<span class="progress-count"><?= count($_SESSION['choices']) ?>/<?= WORLDS * ITEMS ?></span>
-		<button type="submit" name="undo"><img src="img/undoarrow2.png" />Undo</button>
+		<button type="submit" name="undo"><img src="<?= $baseUrl ?>img/undoarrow2.png" />Undo</button>
 	</header>
-	<main id="world" style="background-image: url(img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= defined('ORDERED') ? 'positions' : 'list' ?>">
+	<main id="world" style="background-image: url(<?= $baseUrl ?>img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= defined('ORDERED') ? 'positions' : 'list' ?>">
 		<section id="items">
 			<h1>Choose an Item</h1>
 			<ul id="item-list" data-world="<?= $world ?>">
@@ -154,7 +97,7 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 				<button type="submit" name="item" value="<?= $which ?>">
 					<label><?= $label ?></label>
 					<?php // TODO: change image if set to new image ?>
-					<img width=<?= $item_size ?> height=<?= $item_size ?> src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
+					<img width=<?= $item_size ?> height=<?= $item_size ?> src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
 				</button>
 			</li>
 			<?php endfor; ?>
@@ -177,7 +120,7 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 			?>
 				<li class="choice"><button type="submit" name="choice" value="<?= $randomized[$i] ?>">
 					<label><?= $label ?></label>
-					<img width=<?= $option_size ?> height=<?= $option_size ?> src="img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
+					<img width=<?= $option_size ?> height=<?= $option_size ?> src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
 				</button></li>
 			<?php endfor; ?>
 			</ul>
@@ -187,13 +130,13 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 	<?php if (isset($_SESSION['seed'])): ?>
 	<figure id="objective">
 	<?php
-		$i = count($_SESSION['choices']);
+		$i = min(count($_SESSION['choices']), ($_SESSION['world'] + 1) * ITEMS - 1);
 		$filename = $world . '-' .
 			$_SESSION['seed']['choices'][$i][0] . '-' .
 			$_SESSION['seed']['choices'][$i][1] . '.png';
 		$item = $map[$world]['items'][$_SESSION['seed']['choices'][$i][0]];
 	?>
-		<img src="img/scenes/<?= $filename ?>" alt="" onerror="this.src='placeholder.php?w=200&txt=<?= $filename ?>'" />
+		<img src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
 		<figcaption>
 			<h2><?= $item['name'] ?></h2>
 			<p><?= $item['options'][$_SESSION['seed']['choices'][$i][1]] ?></p>
@@ -205,10 +148,8 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 		<h1>World Complete!</h1>
 		<p>You did all the actions needed to advance.</p>
 		<button name="replay">Replay World</button>
-		<button name="next">Next World</button>
+		<button name="next"><?= $_SESSION['world'] < (WORLDS - 1) ? 'Next World' : 'Show Seed' ?></button>
 	</section>
 	<?php endif; ?>
 <?php endif; ?>
-	</form>
-</body>
-</html>
+</form>

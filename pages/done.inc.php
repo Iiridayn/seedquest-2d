@@ -1,26 +1,10 @@
 <?php
-session_name("SEEDQUEST");
-session_start();
-
-require('config.inc.php');
-require('lib/bip39.php');
 
 if (!isset($_SESSION['choices']) || count($_SESSION['choices']) < (WORLDS * ITEMS)) {
-	header("Location: /");
-	die;
+	redirect("/");
 }
 
-if (!empty($_POST) && (!isset($_POST['_csrf']) || !hash_equals($_POST['_csrf'], $_SESSION['csrf']))) {
-	$_POST = [];
-}
-$_SESSION['csrf'] = bin2hex(random_bytes(32));
-
-if (isset($_POST['reset'])) {
-	session_destroy();
-	header("Location: /");
-	die;
-}
-
+require('lib/bip39.php');
 $bits = '';
 $index = 0;
 for ($i = 0; $i < WORLDS; $i++) {
@@ -37,17 +21,9 @@ for ($i = 0; $i < WORLDS; $i++) {
 $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 $words = encode($dict, $index/8, $bits);
 ?>
-<!doctype html>
-<html>
-<head>
-	<title>SeedQuest</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
 <form method="post">
-<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
 <main id="done" class="menu">
-	<h1>Seed Encoded! <img src="img/clappinghands2.png" alt="clapping hands" /></h1>
+	<h1>Seed Encoded! <img src="<?= $baseUrl ?>img/clappinghands2.png" alt="clapping hands" /></h1>
 	<p>You may copy it <!-- or download your seed -->below.</p>
 	<section id="seed">
 		<?= $words ?>
@@ -59,5 +35,3 @@ $words = encode($dict, $index/8, $bits);
 	</aside>
 </main>
 </form>
-</body>
-</html>

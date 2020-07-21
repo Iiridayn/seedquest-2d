@@ -403,11 +403,11 @@ ol#selected label span {
 	width: 10%;
 	margin: 0 auto;
 }
-#mode-select button img {
+#mode-select a img {
 	height: 1em;
 	margin-right: 1em;
 }
-#mode-select button[value="encode"] img {
+#mode-select a.encode img {
 	position: relative;
 	top: 5px;
 }

@@ -1,52 +1,10 @@
 <?php
-session_name("SEEDQUEST");
-session_start();
-
-require('config.inc.php');
-
-if (!isset($_SESSION['mode'])) {
-	header("Location: /");
-	die;
-}
-
-if (!empty($_POST) && (!isset($_POST['_csrf']) || !hash_equals($_POST['_csrf'], $_SESSION['csrf']))) {
-	$_POST = [];
-}
-$_SESSION['csrf'] = bin2hex(random_bytes(32));
-
 if (!isset($_SESSION['worlds']))
 	$_SESSION['worlds'] = [];
 
-if (isset($_POST['world'])) {
-	$save = count($_SESSION['worlds']) < WORLDS && (
-		!isset($_SESSION['seed']) ||
-		$_SESSION['seed']['worlds'][count($_SESSION['worlds'])] == $_POST['world']
-	);
-	if ($save)
-		$_SESSION['worlds'][] = $_POST['world'];
-}
-
-if (isset($_POST['undo'])) {
-	array_pop($_SESSION['worlds']);
-}
-
-if (isset($_POST['back'])) {
-	if (isset($_SESSION['seed'])) {
-		unset($_SESSION['seed']);
-	} else {
-		unset($_SESSION['mode']);
-	}
-	header('Location: /index.php');
-	die;
-}
+$_SESSION['csrf'] = bin2hex(random_bytes(32));
 ?>
-<!doctype html>
-<html>
-<head>
-	<title>SeedQuest</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body><form method="post">
+<form method="post">
 	<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
 	<main id="world-selection" class="menu">
 		<div><button class="link" name="back">&larr; Back</button></div>
@@ -59,9 +17,9 @@ if (isset($_POST['back'])) {
 			<label><?= $label ?></label>
 			<img
 				alt="<?= $label ?>" title="<?= $label ?>"
-				src="img/world/<?= $world_thumbs[$i][0] ?>_Thumb.png"
+				src="<?= $baseUrl ?>img/world/<?= $world_thumbs[$i][0] ?>_Thumb.png"
 				<?php /* style="margin-top: <?= $world_thumbs[$i][1] ?? -186 ?>px" */ ?>
-				onerror="this.src='placeholder.php?w=200&txt=<?= $label ?>'"
+				onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $label ?>'"
 				/>
 		<?php
 			if (isset($_SESSION['seed'])) {
@@ -83,8 +41,8 @@ if (isset($_POST['back'])) {
 				<label><span class="number"><?= $i + 1 ?></span><?= $label ?></label>
 				<img
 					alt="<?= $label ?>" title="<?= $label ?>"
-					src="img/world/<?= $world_thumbs[$_SESSION['worlds'][$i]][0] ?>_Thumb_F<?= $_SESSION['worlds'][$i] == 9 ? ' 1' : '' ?>.png"
-					onerror="this.src='placeholder.php?w=240&h=300&txt=<?= $label ?>'"
+					src="<?= $baseUrl ?>img/world/<?= $world_thumbs[$_SESSION['worlds'][$i]][0] ?>_Thumb_F<?= $_SESSION['worlds'][$i] == 9 ? ' 1' : '' ?>.png"
+					onerror="this.src='<?= $baseUrl ?>placeholder.php?w=240&h=300&txt=<?= $label ?>'"
 					/>
 			</li>
 			<?php else: ?>
@@ -93,9 +51,8 @@ if (isset($_POST['back'])) {
 		<?php endfor; ?>
 		</ol>
 		<div class="form-footer">
-			<a href="world.php" class="button continue" style="visibility: <?= count($_SESSION['worlds']) < WORLDS ? 'hidden' : 'visible' ?>">Continue</a>
+			<a href="<?= $baseUrl ?>index.php/world" class="button continue" style="visibility: <?= count($_SESSION['worlds']) < WORLDS ? 'hidden' : 'visible' ?>">Continue</a>
 			<button type="submit" name="undo" class="link">Undo Selection</button>
 		</div>
 	</main>
-</form></body>
-</html>
+</form>
