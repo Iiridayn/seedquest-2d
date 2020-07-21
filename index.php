@@ -33,7 +33,8 @@ function component($name, $args = []) {
 $baseUrl = substr($_SERVER['SCRIPT_NAME'], 0, stripos($_SERVER['SCRIPT_NAME'], 'index.php'));
 
 $pages = ['encode', 'worlds', 'world', 'done'];
-$page = substr($_SERVER['PATH_INFO'], 1);
+$path = explode('/', substr($_SERVER['PATH_INFO'], 1));
+$page = $path[0];
 if (!in_array($page, $pages))
 	$page = 'index';
 

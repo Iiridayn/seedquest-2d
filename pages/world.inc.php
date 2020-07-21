@@ -1,5 +1,7 @@
 <?php
-if (!isset($_SESSION['worlds']) || count($_SESSION['worlds']) < WORLDS) {
+
+$okay = isset($path[1]) || (isset($_SESSION['worlds']) && count($_SESSION['worlds']) < WORLDS);
+if (!$okay) {
 	redirect("worlds");
 }
 
@@ -12,7 +14,7 @@ if (!isset($_SESSION['world'])) {
 
 $_SESSION['csrf'] = bin2hex(random_bytes(32));
 
-$world = $_SESSION['worlds'][$_SESSION['world']];
+$world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 ?>
 <form method="post">
 	<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />

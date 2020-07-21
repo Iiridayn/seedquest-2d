@@ -3,6 +3,8 @@
 // So refresh doesn't add more to the list
 ensureCSRF();
 
+$world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
+
 if (isset($_POST['reset'])) {
 	session_destroy();
 	redirect("/");
@@ -19,7 +21,6 @@ if (isset($_POST['item'])) {
 	$_SESSION['item'] = $_POST['item'];
 
 	if (!empty($_POST['ajax'])) {
-		$world = $_SESSION['worlds'][$_SESSION['world']];
 		die(json_encode(array(
 			['add', 'main', component('choice-list', compact('map', 'world'))],
 		)));
@@ -31,7 +32,6 @@ if (isset($_POST['choice']) && (!isset($_SESSION['seed']) || $_POST['choice'] ==
 	unset($_SESSION['item']);
 
 	if (!empty($_POST['ajax'])) {
-		$world = $_SESSION['worlds'][$_SESSION['world']];
 		$which = end($_SESSION['choices'])[0];
 		$actions = array(
 			['remove', '#choices'],
@@ -56,7 +56,6 @@ if (isset($_POST['replay'])) {
 		array_pop($_SESSION['choices']);
 
 	if (!empty($_POST['ajax'])) {
-		$world = $_SESSION['worlds'][$_SESSION['world']];
 		$actions = array(
 			['remove', '#world-complete'],
 			['replace', '#progress', component('progress', array(
@@ -94,7 +93,6 @@ if (isset($_POST['undo'])) {
 
 		if (!empty($_POST['ajax'])) {
 			$which = $saved[0];
-			$world = $_SESSION['worlds'][$_SESSION['world']];
 			$actions = array(
 				['replace', 'li.item[data-item="' . $which . '"]', component(
 					'item', compact('map', 'world', 'which', 'positions')
