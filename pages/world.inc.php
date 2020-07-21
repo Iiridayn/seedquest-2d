@@ -30,7 +30,7 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 		$item = $map[$world]['items'][$_SESSION['seed']['choices'][$i][0]];
 	?>
 		<li><figure>
-			<img src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
+			<img src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>';this.onerror=''" />
 			<figcaption>
 				<h2><?= $item['name'] ?></h2>
 				<p><?= $item['options'][$_SESSION['seed']['choices'][$i][1]] ?></p>
@@ -49,107 +49,23 @@ $world = $_SESSION['worlds'][$_SESSION['world']];
 	<header>
 		<button type="submit" name="reset">Reset</button>
 		<span id="world-name"><?= $_SESSION['world'] + 1 ?>. <?= $map[$world]['name'] ?></span>
-		<div class="progress-bar">
-			<div class="completion" style="width:<?= (count($_SESSION['choices']) / (ITEMS * WORLDS)) * 100 ?>%"></div>
-		</div>
-		<span class="progress-count"><?= count($_SESSION['choices']) ?>/<?= WORLDS * ITEMS ?></span>
+		<?= component('progress', array(
+			'position' => count($_SESSION['choices']),
+			'from' => ITEMS * WORLDS,
+		)) ?>
 		<button type="submit" name="undo"><img src="<?= $baseUrl ?>img/undoarrow2.png" />Undo</button>
 	</header>
 	<main id="world" style="background-image: url(<?= $baseUrl ?>img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= defined('ORDERED') ? 'positions' : 'list' ?>">
-		<section id="items">
-			<h1>Choose an Item</h1>
-			<ul id="item-list" data-world="<?= $world ?>">
-			<?php
-				$randomized = range(0, 15);
-				$item_size = 200;
-				$option_size = 200;
-				if (!defined('ORDERED')) {
-					shuffle($randomized);
-				} else {
-					$item_size = 100;
-					$option_size = 150;
-					// paint lowest positions first, to not overlap text at bottom
-					usort($randomized, function($a, $b) use ($world, $positions) {
-						if ($positions[$world][$a][0] == $positions[$world][$b][0])
-							return 0;
-						return $positions[$world][$a][0] > $positions[$world][$b][0] ? -1 : 1;
-					});
-				}
-			?>
-			<?php for ($i = 0; $i < 16; $i++): ?>
-			<?php
-				$which = $randomized[$i];
-
-				$label = $map[$world]['items'][$which]['name'];
-
-				$mode = 'd';
-				// change image to show last selected state
-				// like SeedQuest 3d, remember _any_ previous visit to the scene
-				foreach ($_SESSION['choices'] as $k => $v) {
-					if ($_SESSION['worlds'][(int) floor($k / ITEMS)] !== $world)
-						continue;
-					if ($v[0] == $which)
-						$mode = $v[1];
-				}
-				$filename = $world . '-' . $which . '-' . $mode . '.png';
-			?>
-			<li class="item" style="top: <?= $positions[$world][$which][0] ?>%; left: calc(<?= $positions[$world][$which][1] ?? floor(5 + $which * (90/16)) ?>% - <?= $item_size ?>px)">
-				<button type="submit" name="item" value="<?= $which ?>">
-					<label><?= $label ?></label>
-					<?php // TODO: change image if set to new image ?>
-					<img width=<?= $item_size ?> height=<?= $item_size ?> src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
-				</button>
-			</li>
-			<?php endfor; ?>
-			</ul>
-		</section>
+		<?= component('item-list', compact('map', 'world', 'positions')) ?>
 		<?php if (isset($_SESSION['item'])): ?>
-		<section id="choices">
-			<button name="undo">x</button>
-			<h1><?= $map[$world]['items'][$_SESSION['item']]['name'] ?></h1>
-			<ul data-item="<?= $i ?>">
-			<?php
-				$randomized = range(0, 3);
-				if (!defined('ORDERED'))
-					shuffle($randomized);
-			?>
-			<?php for ($i = 0; $i < 4; $i++): ?>
-			<?php
-				$label = $map[$world]['items'][$_SESSION['item']]['options'][$randomized[$i]];
-				$filename = $world . '-' . $_SESSION['item']  . '-' . $randomized[$i] . '.png';
-			?>
-				<li class="choice"><button type="submit" name="choice" value="<?= $randomized[$i] ?>">
-					<label><?= $label ?></label>
-					<img width=<?= $option_size ?> height=<?= $option_size ?> src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
-				</button></li>
-			<?php endfor; ?>
-			</ul>
+			<?= component('choice-list', compact('map', 'world')) ?>
 		<?php endif; ?>
-		</section>
 	</main>
 	<?php if (isset($_SESSION['seed'])): ?>
-	<figure id="objective">
-	<?php
-		$i = min(count($_SESSION['choices']), ($_SESSION['world'] + 1) * ITEMS - 1);
-		$filename = $world . '-' .
-			$_SESSION['seed']['choices'][$i][0] . '-' .
-			$_SESSION['seed']['choices'][$i][1] . '.png';
-		$item = $map[$world]['items'][$_SESSION['seed']['choices'][$i][0]];
-	?>
-		<img src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>'" />
-		<figcaption>
-			<h2><?= $item['name'] ?></h2>
-			<p><?= $item['options'][$_SESSION['seed']['choices'][$i][1]] ?></p>
-		</figcaption>
-	</figure>
+		<?= component('objective', compact('map', 'world')) ?>
 	<?php endif; ?>
 	<?php if ($_SESSION['world'] !== (int) floor(count($_SESSION['choices']) / ITEMS)): ?>
-	<section id="world-complete" class="popup">
-		<h1>World Complete!</h1>
-		<p>You did all the actions needed to advance.</p>
-		<button name="replay">Replay World</button>
-		<button name="next"><?= $_SESSION['world'] < (WORLDS - 1) ? 'Next World' : 'Show Seed' ?></button>
-	</section>
+		<?= component('world-complete') ?>
 	<?php endif; ?>
 <?php endif; ?>
 </form>

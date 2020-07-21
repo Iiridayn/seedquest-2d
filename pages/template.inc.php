@@ -7,5 +7,5 @@
 <body>
 	<?= $body ?>
 </body>
-<!-- <script src="<?= $baseUrl ?>ajax.js"></script> -->
+<script src="<?= $baseUrl ?>ajax.js"></script>
 </html>

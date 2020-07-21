@@ -6,7 +6,12 @@ require('config.inc.php');
 
 function redirect($url) {
 	global $baseUrl;
-	header("Location: ${baseUrl}index.php" . ($url !== '/' ? '/' . $url : ''));
+	$to = $baseUrl . 'index.php' . ($url !== '/' ? '/' . $url : '');
+
+	if (!empty($_POST['ajax']))
+		die(json_encode(array(['redirect', $to])));
+
+	header("Location: $to");
 	die;
 }
 function ensureCSRF() {
@@ -14,6 +19,14 @@ function ensureCSRF() {
 	if (!empty($_POST) && (!isset($_POST['_csrf']) || !hash_equals($_POST['_csrf'], $_SESSION['csrf']))) {
 		$_POST = [];
 	}
+}
+
+function component($name, $args = []) {
+	global $baseUrl;
+	ob_start();
+	extract($args, EXTR_SKIP);
+	require('components/'.$name.'.inc.php');
+	return ob_get_clean();
 }
 
 
@@ -26,6 +39,8 @@ if (!in_array($page, $pages))
 
 if (!empty($_POST) && file_exists('handlers/'.$page.'.inc.php')) {
 	require('handlers/'.$page.'.inc.php');
+	if (!empty($_POST['ajax']))
+		die(json_encode([]));
 }
 
 ob_start();
