@@ -1,6 +1,6 @@
 <?php
 
-$okay = isset($path[1]) || (isset($_SESSION['worlds']) && count($_SESSION['worlds']) < WORLDS);
+$okay = isset($path[1]) || (isset($_SESSION['worlds']) && count($_SESSION['worlds']) == WORLDS);
 if (!$okay) {
 	redirect("worlds");
 }
