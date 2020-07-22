@@ -26,7 +26,11 @@ if (isset($_POST['item'])) {
 	}
 }
 
-if (isset($_POST['choice']) && (!isset($_SESSION['seed']) || $_POST['choice'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][1])) {
+$goodChoice = isset($_POST['choice']) && (!isset($_SESSION['seed']) || (
+	$_SESSION['item'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][0] &&
+	$_POST['choice'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][1]
+));
+if ($goodChoice) {
 	$_SESSION['choices'][] = array($_SESSION['item'], $_POST['choice']);
 	unset($_SESSION['item']);
 
