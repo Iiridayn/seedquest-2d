@@ -14,7 +14,12 @@ function redirect($url) {
 	header("Location: $to");
 	die;
 }
-function ensureCSRF() {
+
+function makeCSRF() {
+	$_SESSION['csrf'] = bin2hex(random_bytes(32));
+	return '<input type="hidden" name="_csrf" value="' . $_SESSION['csrf'] . '" />';
+}
+function requireCSRF() {
 	// TODO: $_SESSION['csrf'] sometimes not set
 	if (!empty($_POST) && (!isset($_POST['_csrf']) || !hash_equals($_POST['_csrf'], $_SESSION['csrf']))) {
 		$_POST = [];

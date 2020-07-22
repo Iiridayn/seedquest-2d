@@ -12,12 +12,10 @@ if (!isset($_SESSION['world'])) {
 		$_SESSION['preview'] = true;
 }
 
-$_SESSION['csrf'] = bin2hex(random_bytes(32));
-
 $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 ?>
 <form method="post">
-	<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
+	<?= makeCSRF() ?>
 <?php if ($_SESSION['preview']): ?>
 <main id="preview" class="menu">
 	<h1>Actions To Do</h1>

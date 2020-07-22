@@ -1,7 +1,6 @@
 <?php
 
-// So refresh doesn't add more to the list
-ensureCSRF();
+requireCSRF(); // So refreshing doesn't add more to the list
 
 if (isset($_POST['world'])) {
 	$save = count($_SESSION['worlds']) < WORLDS && (

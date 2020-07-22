@@ -1,11 +1,9 @@
 <?php
 if (!isset($_SESSION['worlds']))
 	$_SESSION['worlds'] = [];
-
-$_SESSION['csrf'] = bin2hex(random_bytes(32));
 ?>
 <form method="post">
-	<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
+	<?= makeCSRF() ?>
 	<main id="world-selection" class="menu">
 		<div><button class="link" name="back">&larr; Back</button></div>
 		<h1>World Selection</h1>
