@@ -32,10 +32,16 @@ function component($name, $args = []) {
 
 $baseUrl = substr($_SERVER['SCRIPT_NAME'], 0, stripos($_SERVER['SCRIPT_NAME'], 'index.php'));
 
-$pages = ['encode', 'worlds', 'world', 'done'];
+$files = scandir('pages');
+$pages = [];
+foreach ($files as $file) {
+	if (substr($file, -8) === '.inc.php')
+		$pages []= substr($file, 0, -8);
+}
+
 $path = explode('/', substr($_SERVER['PATH_INFO'], 1));
 $page = $path[0];
-if (!in_array($page, $pages))
+if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
 	$page = 'index';
 
 if (!empty($_POST) && file_exists('handlers/'.$page.'.inc.php')) {
@@ -46,7 +52,5 @@ if (!empty($_POST) && file_exists('handlers/'.$page.'.inc.php')) {
 
 ob_start();
 require('pages/'.$page.'.inc.php');
-$body = ob_get_clean();
-require('pages/template.inc.php');
-die();
+die(component('template', array('body' => ob_get_clean())));
 ?>
