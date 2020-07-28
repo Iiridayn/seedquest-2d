@@ -60,10 +60,10 @@ $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 		<?php if (isset($_SESSION['item'])): ?>
 			<?= component('choice-list', compact('map', 'world')) ?>
 		<?php endif; ?>
+		<?php if (isset($_SESSION['seed'])): ?>
+			<?= component('objective', compact('map', 'world')) ?>
+		<?php endif; ?>
 	</main>
-	<?php if (isset($_SESSION['seed'])): ?>
-		<?= component('objective', compact('map', 'world')) ?>
-	<?php endif; ?>
 	<?php if ($_SESSION['world'] !== (int) floor(count($_SESSION['choices']) / ITEMS)): ?>
 		<?= component('world-complete') ?>
 	<?php endif; ?>

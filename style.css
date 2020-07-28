@@ -247,23 +247,35 @@ header span.progress-count {
 	max-width: 300px;
 }
 
-.popup, main#world.positions #choices {
+.cover {
 	position: absolute;
-	top: 5em;
+	top: 0;
+	bottom: 0;
 	left: 0;
 	right: 0;
-	width: calc(300px + 0.5em);
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.popup {
+	position: absolute;
+	left: 0;
+	right: 0;
 	margin: 0 auto;
-	padding: 0.5em;
 	background-color: white;
 	z-index: 2;
 	border-radius: 5px;
 }
 
-#world-complete {
+main#world.positions #choices .popup {
+	width: calc(300px + 0.5em);
+	padding: 0.5em;
+	top: 5em;
+}
+
+#world-complete .popup {
 	padding: 2em;
-	margin-top: 10em;
+	top: 10em;
 	text-align: center;
+	width: 350px;
 }
 #world-complete p {
 	font-size: small;
