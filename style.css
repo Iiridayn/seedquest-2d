@@ -297,6 +297,10 @@ main#world.list ul#item-list {
 	overflow-x: scroll;
 	white-space: nowrap;
 }
+main#world.list section h1 {
+	color: white;
+	text-shadow: black 0 0 0.3em;
+}
 
 /* World - ordered */
 main#world.positions #items h1 {

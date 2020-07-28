@@ -16,7 +16,9 @@ foreach ($_SESSION['choices'] as $k => $v) {
 }
 $filename = $world . '-' . $which . '-' . $mode . '.png';
 
-$style = 'top: ' . $positions[$world][$which][0] . '%; left: calc(' . ($positions[$world][$which][1] ?? floor(5 + $which * (90/16))) . '% - ' . $item_size . 'px)';
+$style = '';
+if (defined('ORDERED'))
+	$style = 'top: ' . $positions[$world][$which][0] . '%; left: calc(' . ($positions[$world][$which][1] ?? floor(5 + $which * (90/16))) . '% - ' . $item_size . 'px)';
 ?>
 <li class="item" data-item="<?= $which ?>" style="<?= $style ?>">
 	<button type="submit" name="item" value="<?= $which ?>">

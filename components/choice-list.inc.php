@@ -1,6 +1,10 @@
+<?php if (defined('ORDERED')): ?>
 <div id="choices" class="cover">
-	<section class="popup">
+<?php endif; ?>
+	<section<?= defined('ORDERED') ? ' class="popup"' : '' ?>>
+	<?php if (defined('ORDERED')): ?>
 		<button name="undo">x</button>
+	<?php endif; ?>
 		<h1><?= $map[$world]['items'][$_SESSION['item']]['name'] ?></h1>
 		<ul data-item="<?= $_SESSION['item'] ?>">
 		<?php
@@ -23,4 +27,6 @@
 		<?php endfor; ?>
 		</ul>
 	</section>
+<?php if (defined('ORDERED')): ?>
 </div>
+<?php endif; ?>
