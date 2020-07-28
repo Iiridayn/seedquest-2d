@@ -207,6 +207,7 @@ header span.progress-count {
 	right: -300px;
 	bottom: -300px;
 	pointer-events: none;
+	z-index: 1;
 }
 #objective img {
 	width: 150px;

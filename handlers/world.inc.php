@@ -17,12 +17,20 @@ if (isset($_POST['start'])) {
 }
 
 if (isset($_POST['item'])) {
+	$saved = $_SESSION['item'] ?? null;
 	$_SESSION['item'] = $_POST['item'];
 
 	if (!empty($_POST['ajax'])) {
-		die(json_encode(array(
+		$actions = array(
 			['add', 'main', component('choice-list', compact('map', 'world'))],
-		)));
+		);
+		if ($saved === $_SESSION['item'])
+			$actions = [];
+		else if ($saved !== null)
+			array_unshift($actions, ['remove', '#choices']);
+		if (!defined('ORDERED'))
+			$actions []= ['replace', '#items', component('item-list', compact('map', 'world', 'positions'))];
+		die(json_encode($actions));
 	}
 }
 
@@ -50,6 +58,8 @@ if ($goodChoice) {
 			$actions []= ['replace', '#objective', component('objective', compact('map', 'world'))];
 		if ($_SESSION['world'] !== (int) floor(count($_SESSION['choices']) / ITEMS))
 			$actions []= ['add', 'form', component('world-complete')];
+		if (!defined('ORDERED'))
+			$actions []= ['replace', '#items', component('item-list', compact('map', 'world', 'positions'))];
 		die(json_encode($actions));
 	}
 }
@@ -107,6 +117,8 @@ if (isset($_POST['undo'])) {
 			);
 			if (isset($_SESSION['seed']))
 				$actions []= ['replace', '#objective', component('objective', compact('map', 'world'))];
+			if (!defined('ORDERED'))
+				$actions []= ['replace', '#items', component('item-list', compact('map', 'world', 'positions'))];
 			die(json_encode($actions));
 		}
 	}

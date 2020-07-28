@@ -57,11 +57,11 @@ $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 	</header>
 	<main id="world" style="background-image: url(<?= $baseUrl ?>img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= defined('ORDERED') ? 'positions' : 'list' ?>">
 		<?= component('item-list', compact('map', 'world', 'positions')) ?>
-		<?php if (isset($_SESSION['item'])): ?>
-			<?= component('choice-list', compact('map', 'world')) ?>
-		<?php endif; ?>
 		<?php if (isset($_SESSION['seed'])): ?>
 			<?= component('objective', compact('map', 'world')) ?>
+		<?php endif; ?>
+		<?php if (isset($_SESSION['item'])): ?>
+			<?= component('choice-list', compact('map', 'world')) ?>
 		<?php endif; ?>
 	</main>
 	<?php if ($_SESSION['world'] !== (int) floor(count($_SESSION['choices']) / ITEMS)): ?>

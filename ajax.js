@@ -27,9 +27,9 @@ window.addEventListener('load', function() {
 				break;
 
 			case 'add':
-				//console.log('at', data[1], 'appending', data[2]);
 				el = document.createElement('div');
 				el.innerHTML = data[2];
+				//console.log('at', data[1], 'appending', el.firstChild);
 				document.querySelector(data[1]).appendChild(el.firstChild);
 				el = undefined; // don't know if it would leak memory w/o this
 				rebindListeners();
