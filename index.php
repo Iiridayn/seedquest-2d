@@ -20,7 +20,6 @@ function makeCSRF() {
 	return '<input type="hidden" name="_csrf" value="' . $_SESSION['csrf'] . '" />';
 }
 function requireCSRF() {
-	// TODO: $_SESSION['csrf'] sometimes not set
 	if (!empty($_POST) && (!isset($_POST['_csrf']) || !hash_equals($_POST['_csrf'], $_SESSION['csrf']))) {
 		$_POST = [];
 	}
