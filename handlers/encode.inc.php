@@ -4,8 +4,14 @@ if (isset($_POST['words'])) {
 	require('lib/bip39.php');
 	$dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 	$bytes = decode(trim($_POST['words']), $dict);
-	if ($bytes !== false && strlen($bytes) >= 16) {
-		$_SESSION['seed'] = array(
+
+	$good = $bytes !== false && strlen($bytes) >= 16;
+	if (!empty($_POST['check'])) {
+		die(json_encode($good));
+	}
+
+	if ($good) {
+		$seed = array(
 			'worlds' => [],
 			'choices' => [],
 		);
@@ -15,16 +21,17 @@ if (isset($_POST['words'])) {
 			// 4 bits select a scene
 			$scene = getbits($bytes, $bit, 4);
 			$bit += 4;
-			$_SESSION['seed']['worlds'][] = $scene;
+			$seed['worlds'][] = $scene;
 
 			for ($j = 0; $j < 3; $j++) {
 				$interactible = getbits($bytes, $bit, 4);
 				$option = getbits($bytes, $bit + 4, 2);
-				$_SESSION['seed']['choices'][] = array($interactible, $option);
+				$seed['choices'][] = array($interactible, $option);
 				$bit += 6;
 			}
 		}
 
+		$_SESSION['seed'] = $seed;
 		redirect('worlds');
 	}
 }

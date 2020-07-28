@@ -16,3 +16,4 @@
 		<button type="submit">Encode Key</button>
 	</form>
 </main>
+<script src="<?= $baseUrl ?>words.js"></script>
