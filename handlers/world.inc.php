@@ -28,7 +28,7 @@ if (isset($_POST['item'])) {
 			$actions = [];
 		else if ($saved !== null)
 			array_unshift($actions, ['remove', '#choices']);
-		if (!defined('ORDERED'))
+		if (!$_SESSION['ordered'])
 			$actions []= ['replace', '#items', component('item-list', compact('map', 'world', 'positions'))];
 		die(json_encode($actions));
 	}
@@ -58,7 +58,7 @@ if ($goodChoice) {
 			$actions []= ['replace', '#objective', component('objective', compact('map', 'world'))];
 		if ($_SESSION['world'] !== (int) floor(count($_SESSION['choices']) / ITEMS))
 			$actions []= ['add', 'form', component('world-complete')];
-		if (!defined('ORDERED'))
+		if (!$_SESSION['ordered'])
 			$actions []= ['replace', '#items', component('item-list', compact('map', 'world', 'positions'))];
 		die(json_encode($actions));
 	}
@@ -117,7 +117,7 @@ if (isset($_POST['undo'])) {
 			);
 			if (isset($_SESSION['seed']))
 				$actions []= ['replace', '#objective', component('objective', compact('map', 'world'))];
-			if (!defined('ORDERED'))
+			if (!$_SESSION['ordered'])
 				$actions []= ['replace', '#items', component('item-list', compact('map', 'world', 'positions'))];
 			die(json_encode($actions));
 		}

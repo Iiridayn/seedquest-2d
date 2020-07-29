@@ -55,7 +55,7 @@ $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 		)) ?>
 		<button type="submit" name="undo"><img src="<?= $baseUrl ?>img/undoarrow2.png" />Undo</button>
 	</header>
-	<main id="world" style="background-image: url(<?= $baseUrl ?>img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= defined('ORDERED') ? 'positions' : 'list' ?>">
+	<main id="world" style="background-image: url(<?= $baseUrl ?>img/env/<?= $world_thumbs[$world][0] ?>-3d-trimmed.png)" class="<?= $_SESSION['ordered'] ? 'positions' : 'list' ?>">
 		<?= component('item-list', compact('map', 'world', 'positions')) ?>
 		<?php if (isset($_SESSION['seed'])): ?>
 			<?= component('objective', compact('map', 'world')) ?>

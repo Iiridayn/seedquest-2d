@@ -1,6 +1,6 @@
 <?php
 $item_size = 200;
-if (defined('ORDERED'))
+if ($_SESSION['ordered'])
 	$item_size = 100;
 
 $label = $map[$world]['items'][$which]['name'];
@@ -17,7 +17,7 @@ foreach ($_SESSION['choices'] as $k => $v) {
 $filename = $world . '-' . $which . '-' . $mode . '.png';
 
 $style = '';
-if (defined('ORDERED'))
+if ($_SESSION['ordered'])
 	$style = 'top: ' . $positions[$world][$which][0] . '%; left: calc(' . ($positions[$world][$which][1] ?? floor(5 + $which * (90/16))) . '% - ' . $item_size . 'px)';
 ?>
 <li class="item" data-item="<?= $which ?>" style="<?= $style ?>">

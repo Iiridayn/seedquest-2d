@@ -67,6 +67,10 @@ a.button {
 	text-decoration: none;
 }
 
+fieldset {
+	border: 0;
+}
+
 /* Multiple */
 main.menu {
 	padding: 2em 10%;
@@ -420,15 +424,23 @@ ol#selected label span {
 	width: 10%;
 	margin: 0 auto;
 }
-#mode-select a img {
+#mode-select button img {
 	height: 1em;
 	margin-right: 1em;
 }
-#mode-select a.encode img {
+#mode-select button[name="encode"] img {
 	position: relative;
 	top: 5px;
 }
+#mode-select button[name="decode"] {
+	margin-left: 1em;
+}
 
+#mode-select fieldset {
+	margin-top: 1.5em;
+}
+
+/* Encode */
 input[name="words"] {
 	padding: 1em;
 	padding-right: 3em;

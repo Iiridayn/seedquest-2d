@@ -3,7 +3,7 @@
 	<ul id="item-list" data-world="<?= $world ?>">
 	<?php
 		$randomized = range(0, 15);
-		if (!defined('ORDERED')) {
+		if (!$_SESSION['ordered']) {
 			shuffle($randomized);
 		} else {
 			// paint lowest positions first, to not overlap text at bottom

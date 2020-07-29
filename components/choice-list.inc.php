@@ -1,8 +1,8 @@
-<?php if (defined('ORDERED')): ?>
+<?php if ($_SESSION['ordered']): ?>
 <div id="choices" class="cover">
 <?php endif; ?>
-<section <?= defined('ORDERED') ? 'class="popup"' : 'id="choices"' ?>>
-<?php if (defined('ORDERED')): ?>
+<section <?= $_SESSION['ordered'] ? 'class="popup"' : 'id="choices"' ?>>
+<?php if ($_SESSION['ordered']): ?>
 	<button name="undo">x</button>
 <?php endif; ?>
 	<h1><?= $map[$world]['items'][$_SESSION['item']]['name'] ?></h1>
@@ -10,7 +10,7 @@
 	<?php
 		$randomized = range(0, 3);
 		$option_size = 150;
-		if (!defined('ORDERED')) {
+		if (!$_SESSION['ordered']) {
 			$option_size = 200;
 			shuffle($randomized);
 		}
@@ -27,6 +27,6 @@
 	<?php endfor; ?>
 	</ul>
 </section>
-<?php if (defined('ORDERED')): ?>
+<?php if ($_SESSION['ordered']): ?>
 </div>
 <?php endif; ?>

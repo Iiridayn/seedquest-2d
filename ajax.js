@@ -74,7 +74,9 @@ window.addEventListener('load', function() {
 		for (var i = 0; i < fields.length; i++) {
 			if (!fields[i].name)
 				continue;
-			data.push(encodeURIComponent(fields[i].name) + '=' + encodeURIComponent(fields[i].value));
+			// TODO: probably should support checkboxes too
+			if (fields[i].type !== 'radio' || fields[i].checked)
+				data.push(encodeURIComponent(fields[i].name) + '=' + encodeURIComponent(fields[i].value));
 		}
 		if (button && button.name)
 			data.push(encodeURIComponent(button.name) + '=' + encodeURIComponent(button.value));

@@ -2,7 +2,6 @@
 
 define('WORLDS', 6);
 define('ITEMS', 3);
-define('ORDERED', true);
 
 $map = array();
 $f = fopen('Saved_data.csv', 'r');
