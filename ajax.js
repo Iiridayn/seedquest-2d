@@ -14,6 +14,9 @@ window.addEventListener('load', function() {
 				document.querySelector(data[1]).outerHTML = data[2];
 				rebindListeners();
 				break;
+			case 'attr':
+				document.querySelector(data[1])[data[2]] = data[3];
+				break;
 			case 'style':
 				//console.log('setting', data[1], 'style', data[2], 'to', data[3]);
 				document.querySelector(data[1]).style[data[2]] = data[3];

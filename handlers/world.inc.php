@@ -37,18 +37,19 @@ if (isset($_POST['item'])) {
 $goodChoice = isset($_POST['choice']) && (!isset($_SESSION['seed']) || (
 	$_SESSION['item'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][0] &&
 	$_POST['choice'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][1]
-));
+)) && $_POST['choice'] >= 0 && $_POST['choice'] <= 3;
+$_POST['choice'] = (int) $_POST['choice'];
 if ($goodChoice) {
 	$_SESSION['choices'][] = array($_SESSION['item'], $_POST['choice']);
 	unset($_SESSION['item']);
 
 	if (!empty($_POST['ajax'])) {
 		$which = end($_SESSION['choices'])[0];
+		$filename = itemFilename($world, $which);
 		$actions = array(
 			['remove', '#choices'],
-			['replace', 'li.item[data-item="' . $which . '"]', component(
-				'item', compact('map', 'world', 'which', 'positions')
-			)],
+			['attr', 'li.item[data-item="' . $which . '"] img', 'src', $baseUrl . 'img/scenes/' . $filename],
+			//['attr', 'li.item[data-item="' . $which . '"] img', 'onerror', "this.src='" . $baseUrl . "placeholder.php?w=200&txt=" . $filename . "';this.onerror=''"],
 			['replace', '#progress', component('progress', array(
 				'position' => count($_SESSION['choices']),
 				'from' => ITEMS * WORLDS,
@@ -106,10 +107,10 @@ if (isset($_POST['undo'])) {
 
 		if (!empty($_POST['ajax'])) {
 			$which = $saved[0];
+			$filename = itemFilename($world, $which);
 			$actions = array(
-				['replace', 'li.item[data-item="' . $which . '"]', component(
-					'item', compact('map', 'world', 'which', 'positions')
-				)],
+				['attr', 'li.item[data-item="' . $which . '"] img', 'src', $baseUrl . 'img/scenes/' . $filename],
+				//['attr', 'li.item[data-item="' . $which . '"] img', 'onerror', "this.src='" . $baseUrl . "placeholder.php?w=200&txt=" . $filename . "';this.onerror=''"],
 				['replace', '#progress', component('progress', array(
 					'position' => count($_SESSION['choices']),
 					'from' => ITEMS * WORLDS,

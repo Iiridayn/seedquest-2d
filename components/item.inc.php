@@ -4,17 +4,7 @@ if ($_SESSION['ordered'])
 	$item_size = 100;
 
 $label = $map[$world]['items'][$which]['name'];
-
-$mode = 'd';
-// change image to show last selected state
-// like SeedQuest 3d, remember _any_ previous visit to the scene
-foreach ($_SESSION['choices'] as $k => $v) {
-	if ($_SESSION['worlds'][(int) floor($k / ITEMS)] !== $world)
-		continue;
-	if ($v[0] == $which)
-		$mode = $v[1];
-}
-$filename = $world . '-' . $which . '-' . $mode . '.png';
+$filename = itemFilename($world, $which);
 
 $style = '';
 if ($_SESSION['ordered'])

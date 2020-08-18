@@ -33,6 +33,20 @@ function component($name, $args = []) {
 	return ob_get_clean();
 }
 
+// Current best place for this; should probably move elsewhere later
+function itemFilename($world, $which) {
+	$mode = 'd';
+	// change image to show last selected state
+	// like SeedQuest 3d, remember _any_ previous visit to the scene
+	foreach ($_SESSION['choices'] as $k => $v) {
+		if ($_SESSION['worlds'][(int) floor($k / ITEMS)] !== $world)
+			continue;
+		if ($v[0] == $which)
+			$mode = $v[1];
+	}
+	return $world . '-' . $which . '-' . $mode . '.png';
+}
+
 
 $baseUrl = substr($_SERVER['SCRIPT_NAME'], 0, stripos($_SERVER['SCRIPT_NAME'], 'index.php'));
 
