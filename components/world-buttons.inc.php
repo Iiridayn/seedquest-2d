@@ -1,6 +1,6 @@
 <ol id="worlds">
 <?php for ($i = 0; $i < 16; $i++): ?>
-	<?php $label = $map[$i]['name']; ?>
+	<?php $label = $map[$i]['label']; ?>
 	<li class="world"><button type="submit" name="world" value="<?= $i ?>">
 		<label><?= $label ?></label>
 		<img

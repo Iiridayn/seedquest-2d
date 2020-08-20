@@ -16,6 +16,7 @@ while (($data = fgetcsv($f)) !== false) {
 	if (!isset($map[$scene])) {
 		$map[$scene] = array(
 			'name' => $data[$headers['Scene Name']],
+			'label' => $data[$headers['Scene Label']],
 			'items' => array(),
 		);
 	}

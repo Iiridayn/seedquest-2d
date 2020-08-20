@@ -1,5 +1,5 @@
 <?php if (isset($_SESSION['worlds'][$i])): ?>
-	<?php $label = $map[$_SESSION['worlds'][$i]]['name'] ?? ''; ?>
+	<?php $label = $map[$_SESSION['worlds'][$i]]['label'] ?? ''; ?>
 <li>
 	<label><span class="number"><?= $i + 1 ?></span><?= $label ?></label>
 	<img
