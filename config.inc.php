@@ -96,7 +96,7 @@ $positions = array( // states, details - which matches default state if 4
 	3 => array( // low res/poly; ?
 		0 => [74, 83], // 4, 2 models, 4 total, 2 palate swaps. - 0
 		1 => [43, 54], // 4, model - 0
-		2 => [37, 26], // 5, palate, minor rotation from default
+		2 => [28, 64], // 5, model, though one is _just_ an animation
 		3 => [27, 36], // 4, model - 2
 		4 => [57, 42], // 4, model - 1
 		5 => [47, 100], // 4, palate, animation speed/rotation direction changes - 0
@@ -108,7 +108,7 @@ $positions = array( // states, details - which matches default state if 4
 		11 => [27, 69], // 4, model; one subtractive, one animates only (no model change), one additive, one no change - 3
 		12 => [28, 59], // 4, palate swap - 1
 		13 => [27, 73], // 5, model
-		14 => [28, 64], // 5, model, though one is _just_ an animation
+		14 => [37, 26], // 5, palate, minor rotation from default
 		15 => [28, 43], // 5, model - 3 models (2 of the states), the other two are animations
 	),
 	4 => array( // low res/poly; ?
