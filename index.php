@@ -62,6 +62,11 @@ $page = $path[0];
 if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
 	$page = 'index';
 
+if (in_array($path[0], ['ordered', 'unordered'])) {
+	$_SESSION['ordered'] = $path[0] === 'ordered';
+	redirect('');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && file_exists('handlers/'.$page.'.inc.php')) {
 	require('handlers/'.$page.'.inc.php');
 	if (!empty($_POST['ajax']))
