@@ -38,9 +38,8 @@ $goodChoice = isset($_POST['choice']) && (!isset($_SESSION['seed']) || (
 	$_SESSION['item'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][0] &&
 	$_POST['choice'] == $_SESSION['seed']['choices'][count($_SESSION['choices'])][1]
 )) && $_POST['choice'] >= 0 && $_POST['choice'] <= 3;
-$_POST['choice'] = (int) $_POST['choice'];
 if ($goodChoice) {
-	$_SESSION['choices'][] = array($_SESSION['item'], $_POST['choice']);
+	$_SESSION['choices'][] = array($_SESSION['item'], (int) $_POST['choice']);
 	unset($_SESSION['item']);
 
 	if (!empty($_POST['ajax'])) {
