@@ -62,8 +62,8 @@ foreach ($files as $file) {
 		$pages []= substr($file, 0, -8);
 }
 
-$path = explode('/', substr($_SERVER['PATH_INFO'], 1));
-$page = $path[0];
+$path = isset($_SERVER['PATH_INFO']) ? explode('/', substr($_SERVER['PATH_INFO'], 1)) : [];
+$page = $path[0] ?? 'index';
 if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
 	$page = 'index';
 
