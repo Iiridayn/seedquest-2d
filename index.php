@@ -2,6 +2,11 @@
 session_name("SEEDQUEST");
 session_start();
 
+if (php_sapi_name() == 'cli-server') {
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL | E_STRICT);
+}
+
 require('config.inc.php');
 
 function redirect($url) {
