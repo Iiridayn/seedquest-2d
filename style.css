@@ -344,19 +344,19 @@ ol#worlds .scene-marker {
 	display: inline-block;
 }
 ol#worlds .scene-marker-2 {
-	left: calc(0.25em + (100%/6 - 0.5em) * 2);
+	left: calc(0.25em + ((100% - 1.5em)/6) * 2);
 }
 ol#worlds .scene-marker-3 {
-	left: calc(0.25em + (100%/6 - 0.5em) * 3);
+	left: calc(0.25em + ((100% - 1.5em)/6) * 3);
 }
 ol#worlds .scene-marker-4 {
-	left: calc(0.25em + (100%/6 - 0.5em) * 4);
+	left: calc(0.25em + ((100% - 1.5em)/6) * 4);
 }
 ol#worlds .scene-marker-5 {
-	left: calc(0.25em + (100%/6 - 0.5em) * 5);
+	left: calc(0.25em + ((100% - 1.5em)/6) * 5);
 }
 ol#worlds .scene-marker-6 {
-	left: calc(0.25em + (100%/6 - 0.5em) * 6);
+	left: calc(0.25em + ((100% - 1.5em)/6) * 6);
 }
 
 #world-selection a.button.continue {
