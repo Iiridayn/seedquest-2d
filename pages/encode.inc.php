@@ -5,7 +5,7 @@
 		<h1>Encode Your Key</h1>
 		<p class="aside">Enter your seed below. It should be 33 hex characters long, or a set of 12 words with spaces.</p>
 		<div id="input-wrapper">
-			<input type="text" name="words" value="<?= isset($_POST['words']) ? htmlspecialchars($_POST['words']) : '' ?>" />
+			<input type="text" name="words" value="<?= isset($_POST['words']) ? htmlspecialchars($_POST['words']) : '' ?>" onpaste="return false;" />
 			<img class="warning" src="<?= $baseUrl ?>img/warning.png" style="display: <?= isset($_POST['words']) ? 'block' : 'none' ?>" />
 			<img class="success" src="<?= $baseUrl ?>img/success.png" style="display: none" />
 			<img src="<?= $baseUrl ?>img/eye-blue.png" alt="" />
