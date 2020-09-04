@@ -211,7 +211,7 @@ header span.progress-count {
 	width: 600px;
 	height: 600px;
 	border-radius: 300px;
-	border: 10px solid black;
+	border: 0.5em solid white;
 	right: -300px;
 	bottom: -300px;
 	pointer-events: none;
