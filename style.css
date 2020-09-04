@@ -230,32 +230,6 @@ header span.progress-count {
 	top: calc(15% + 150px);
 }
 
-#preview ol {
-	text-align: center;
-}
-#preview ol li {
-	margin-right: 3em;
-	position: relative;
-	width: calc(100%/3 - 3.5em);
-	max-width: 300px;
-}
-#preview .joiner {
-	font-weight: bold;
-	font-size: 200%;
-	position: absolute;
-	top: calc((100% - 2em) * .4);
-	left: -1.3em;
-}
-#preview .form-footer button {
-	padding-left: 4em;
-	padding-right: 4em;
-	margin-top: 1em;
-}
-#preview-items img {
-	width: 100%;
-	max-width: 300px;
-}
-
 .cover {
 	position: absolute;
 	top: 0;
@@ -300,6 +274,50 @@ main#world.positions #choices .popup {
 	padding: calc(1em - 1px) calc(2em - 1px);
 	margin-right: 2em;
 }
+
+
+/* World - Preview */
+#preview h1 {
+	margin-bottom: 0;
+	letter-spacing: 0.02em;
+}
+#preview h1 + p {
+	margin-top: 0;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 0.02em;
+}
+#preview ol {
+	text-align: center;
+}
+#preview ol li {
+	margin-right: 3em;
+	position: relative;
+	width: calc(100%/3 - 3.5em);
+	max-width: 300px;
+}
+#preview .joiner {
+	font-weight: bold;
+	font-size: 200%;
+	position: absolute;
+	top: calc((100% - 2em) * .4);
+	left: -1.3em;
+}
+#preview .form-footer button {
+	padding-left: 4em;
+	padding-right: 4em;
+	margin-top: 1em;
+}
+#preview-items img {
+	width: 100%;
+	max-width: 300px;
+}
+#preview figcaption h2 {
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: 500;
+}
+
 
 /* World - unordered */
 main#world.list ul#item-list {
