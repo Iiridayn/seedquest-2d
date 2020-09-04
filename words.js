@@ -1,9 +1,12 @@
 window.addEventListener('load', function() {
+	var submit = document.querySelector('button');
+	submit.disabled = true;
+
 	var success = document.querySelectorAll('.success');
 	var warning = document.querySelectorAll('.warning');
 
 	function check(words) {
-		console.log('checking:', words);
+		//console.log('checking:', words);
 		var xhr = new XMLHttpRequest();
 
 		xhr.addEventListener('load', function(xhrE) {
@@ -26,6 +29,7 @@ window.addEventListener('load', function() {
 				for (var i = 0; i < warning.length; i++)
 					warning[i].style.display = 'block';
 			}
+			submit.disabled = !!good;
 		});
 		xhr.addEventListener('error', function(xhrE) {
 			console.error(xhrE);

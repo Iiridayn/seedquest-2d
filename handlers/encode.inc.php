@@ -5,7 +5,7 @@ if (isset($_POST['words'])) {
 	$dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 	$bytes = decode(trim($_POST['words']), $dict);
 
-	$good = $bytes !== false && strlen($bytes) >= 16;
+	$good = $bytes !== false && strlen($bytes) > 16;
 	if (!empty($_POST['check'])) {
 		die(json_encode($good));
 	}
