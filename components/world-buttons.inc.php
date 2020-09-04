@@ -3,12 +3,11 @@
 	<?php $label = $map[$i]['label']; ?>
 	<li class="world"><button type="submit" name="world" value="<?= $i ?>">
 		<label><?= $label ?></label>
-		<img
-			alt="<?= $label ?>" title="<?= $label ?>"
-			src="<?= $baseUrl ?>img/world/<?= $world_thumbs[$i][0] ?>_Thumb.png"
-			<?php /* style="margin-top: <?= $world_thumbs[$i][1] ?? -186 ?>px" */ ?>
-			onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $label ?>';this.onerror=''"
-			/>
+		<?= component('img', array(
+			'alt' => $label, 'title' => $label,
+			'src' => 'world/' . $world_thumbs[$i][0] . '_Thumb.png',
+			'placeholder' => [200],
+		)) ?>
 	<?php
 		if (isset($_SESSION['seed'])) {
 			for ($j = 0; $j < count($_SESSION['seed']['worlds']) && $j <= count($_SESSION['worlds']); $j++) {

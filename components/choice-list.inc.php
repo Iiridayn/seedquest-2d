@@ -22,7 +22,12 @@
 	?>
 		<li class="choice"><button type="submit" name="choice" value="<?= $randomized[$i] ?>">
 			<label><?= $label ?></label>
-			<img width=<?= $option_size ?> height=<?= $option_size ?> src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>';this.onerror=''" />
+			<?= component('img', array(
+				'width' => $option_size, 'height' => $option_size,
+				'alt' => $label, 'title' => $label,
+				'src' => 'scenes/' . $filename,
+				'placeholder' => [200, null, $filename],
+			)) ?>
 		</button></li>
 	<?php endfor; ?>
 	</ul>

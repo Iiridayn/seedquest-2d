@@ -2,11 +2,11 @@
 	<?php $label = $map[$_SESSION['worlds'][$i]]['label'] ?? ''; ?>
 <li>
 	<label><span class="number"><?= $i + 1 ?></span><?= $label ?></label>
-	<img
-		alt="<?= $label ?>" title="<?= $label ?>"
-		src="<?= $baseUrl ?>img/world/<?= $world_thumbs[$_SESSION['worlds'][$i]][0] ?>_Thumb_F<?= $_SESSION['worlds'][$i] == 9 ? ' 1' : '' ?>.png"
-		onerror="this.src='<?= $baseUrl ?>placeholder.php?w=240&h=300&txt=<?= $label ?>';this.onerror=''"
-		/>
+	<?= component('img', array(
+		'alt' => $label, 'title' => $label,
+		'src' => 'world/' . $world_thumbs[$_SESSION['worlds'][$i]][0] . '_Thumb_F' . ($_SESSION['worlds'][$i] == 9 ? ' 1' : '') . '.png',
+		'placeholder' => [240, 300],
+	)) ?>
 </li>
 <?php else: ?>
 <li class="empty"></li>

@@ -9,7 +9,10 @@
 		$_SESSION['seed']['choices'][$i][1] . '.png';
 	$item = $map[$world]['items'][$_SESSION['seed']['choices'][$i][0]];
 ?>
-	<img src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>';this.onerror=''" />
+	<?= component('img', array(
+		'alt' => '', 'src' => 'scenes/' . $filename,
+		'placeholder' => [200, null, $filename],
+	)) ?>
 	<figcaption>
 		<h2><?= ucSpanWrap($item['name']) ?></h2>
 		<p><?= ucSpanWrap($item['options'][$_SESSION['seed']['choices'][$i][1]]) ?></p>

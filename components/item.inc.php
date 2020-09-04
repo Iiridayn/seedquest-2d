@@ -13,6 +13,11 @@ if ($_SESSION['ordered'])
 <li class="item" data-item="<?= $which ?>" style="<?= $style ?>">
 	<button type="submit" name="item" value="<?= $which ?>">
 		<label><?= $label ?></label>
-		<img width=<?= $item_size ?> height=<?= $item_size ?> src="<?= $baseUrl ?>img/scenes/<?= $filename ?>" alt="<?= $label ?>" title="<?= $label ?>" onerror="this.src='<?= $baseUrl ?>placeholder.php?w=200&txt=<?= $filename ?>';this.onerror=''" />
+		<?= component('img', array(
+			'width' => $item_size, 'height' => $item_size,
+			'alt' => $label, 'title' => $label,
+			'src' => 'scenes/' . $filename,
+			'placeholder' => [200, null, $filename],
+		)) ?>
 	</button>
 </li>
