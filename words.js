@@ -29,7 +29,7 @@ window.addEventListener('load', function() {
 				for (var i = 0; i < warning.length; i++)
 					warning[i].style.display = 'block';
 			}
-			submit.disabled = !!good;
+			submit.disabled = !good;
 		});
 		xhr.addEventListener('error', function(xhrE) {
 			console.error(xhrE);
