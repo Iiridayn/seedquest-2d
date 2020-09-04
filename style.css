@@ -80,6 +80,13 @@ main.menu {
 	padding: 2em 10%;
 	background-color: white;
 }
+main.document {
+	padding: 1em;
+	max-width: 80ch;
+}
+main.document p:first-child {
+	margin-top: 0;
+}
 
 .form-footer {
 	text-align: center;
@@ -517,4 +524,16 @@ input[name="words"] {
 }
 #encode-select button[type='submit'] {
 	margin-top: 1em;
+}
+
+
+/* Instructions */
+main#instructions img {
+	max-width: 80ch;
+}
+p.beta {
+	color: red;
+}
+strong#assigned {
+	user-select: none;
 }
