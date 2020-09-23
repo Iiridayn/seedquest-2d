@@ -67,7 +67,7 @@ $page = $path[0] ?? 'index';
 if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
 	$page = 'index';
 
-if (!isset($_SESSION['registered']))
+if (!isset($_SESSION['registered']) && $page !== 'followup')
 	$page = 'register';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && file_exists('handlers/'.$page.'.inc.php')) {

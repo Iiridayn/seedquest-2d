@@ -3,6 +3,7 @@ $_SESSION['ordered'] = false;
 $mode = $_SESSION['registered']['mode'];
 ?>
 <main id="instructions" class="document">
+<?php if (empty($_SESSION['decode'])): ?>
 <p>Thank you.</p>
 
 <p>SeedQuest is a game designed to make it easier to remember a large random sequence, such as a passphrase. You will be assigned a random passphrase, which you will enter into SeedQuest. SeedQuest will then give you a sequence of worlds and actions you will perform in those worlds, which we will ask you to remember in a follow up study 7 days later. We will also ask you to remember what you can of the assigned passphrase, so we can see how SeedQuest compares to a passphrase.</p>
@@ -12,7 +13,7 @@ $mode = $_SESSION['registered']['mode'];
 <?php if ($mode === 0): ?>
 <p>Please review the following instructions while SeedQuest is downloading in another browser tab. This may take up to about an hour on a slow ADSL connection. We suggest working on other tasks while this is downloading, and have factored in about 12 minutes of pay (equivalent to a 5 Mbit/s connection) for the inconvenience.</p>
 <p class="beta">Beta testers in the lab please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
-<p><a href="../build" target="_blank">Click here to start SeedQuest</a></p>
+<p><a href="../build/" target="_blank">Click here to start SeedQuest</a></p>
 <?php endif; ?>
 
 <p>Once SeedQuest loads, you will click on “Encode Key”.</p>
@@ -103,4 +104,49 @@ $mode = $_SESSION['registered']['mode'];
 <?php else: ?>
 <p>Now, leave this tab open so you can retype your password and reference the instructions as needed. Follow this link to <a href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
 <?php endif; ?>
+<?php else: // decode ?>
+<p>Next we’ll have you go through SeedQuest again, in Decode Key mode.<?php if ($mode === 0): ?> As before, please review the following instructions while waiting for SeedQuest to download in another tab.<?php endif; ?> Like with the passphrase, just make your best guess if you are having difficulty remembering your SeedQuest actions.</p>
+<?php if ($mode === 0): ?>
+<p><a href="../build/" target="_blank">Click here to start SeedQuest</a></p>
+<?php endif; ?>
+Once SeedQuest loads, you will click on “Decode Key”.
+<?= component('img', array('src' => 'tutorial/Main Menu - Decode Circle.png')) ?>
+<p>This will take you to the world selection screen, where you will select the worlds in the same sequence they were assigned - make your best guess if you are uncertain. If you make a mistake, you can clear the final world on the list one at a time with the “Undo Selection” link below.</p>
+<?= component('img', array('src' => 'tutorial/Decode World Selection - Undo.png')) ?>
+<p>As during the Encode step, select “Continue” once you’ve selected all your assigned worlds.</p>
+<?= component('img', array('src' => 'tutorial/Decode World Selection Done.png')) ?>
+<p>This will take you to the same world screen as last week, but without any helpful guidance of what to click on - SeedQuest doesn’t know what comes next, as it doesn’t know the passphrase this time. Perform the same actions as last week - choosing the same items and the same choices on each.<?php if ($mode === 0): ?> Items with a menu are indicated by a white dot hovering above them.<?php endif; ?> If you activated the wrong option or an option on the wrong item, you can always use the “Undo” button next to the progress bar at the top to revert your selection. As in encode mode, you must select the item and the state<?php if ($mode !== 2): ?>, even if it doesn’t change the visual appearance<?php endif; ?> - the progress bar will update as you do.</p>
+<?php if ($mode === 0): ?>
+<?= component('img', array('src' => 'tutorial/Decode World Loaded - Undo.png')) ?>
+<?= component('img', array('src' => 'tutorial/Decode World Selecting.png')) ?>
+<?= component('img', array('src' => 'tutorial/Decode World Selected.png')) ?>
+<?php elseif ($mode === 1): ?>
+<?= component('img', array('src' => 'tutorial/2d Decode World Loaded - Undo.png')) ?>
+<?= component('img', array('src' => 'tutorial/2d Decode World Selecting.png')) ?>
+<?= component('img', array('src' => 'tutorial/2d Decode World Selected.png')) ?>
+<?php elseif ($mode === 2): ?>
+<?= component('img', array('src' => 'tutorial/2d Random Decode World Loaded - Undo.png')) ?>
+<?= component('img', array('src' => 'tutorial/2d Random Decode World Selecting.png')) ?>
+<?= component('img', array('src' => 'tutorial/2d Random Decode World Selected.png')) ?>
+<?php endif; ?>
+<p>Repeat the same selections across all loaded worlds, then you should see the “Seed Encoded” screen. Select the Words tab, and copy the recovered seed into the box below.</p>
+<?php if ($mode === 0): ?>
+<?= component('img', array('src' => 'tutorial/Seed Decoded.png')) ?>
+<?= component('img', array('src' => 'tutorial/Seed Decoded Words.png')) ?>
+<?php else: ?>
+<?= component('img', array('src' => 'tutorial/2d Decode Seed.png')) ?>
+<?php endif; ?>
+<p>Thank you for your participation. We (will) have a brief survey at the end here. Please remember you can skip answering any questions you may feel uncomfortable answering.</p>
+<?php endif; ?>
+<?php if ($mode === 0): ?>
+<p>Now, leave this tab open so you can enter your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
+<?php else: ?>
+<p>Now, leave this tab open so you can enter your password and reference the instructions as needed. Follow this link to <a href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
+<?php endif; ?>
+<form method="post" action="<?= $baseUrl ?>index.php/check">
+	<label for="assigned">Passphrase</label>
+	<input type="hidden" name="complete" value="true">
+	<input id="assigned" name="assigned" type="text">
+	<input type="submit">
+</form>
 </main>
