@@ -16,7 +16,7 @@ $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 ?>
 <form method="post">
 	<?= makeCSRF() ?>
-<?php if ($_SESSION['preview']): ?>
+<?php if (!empty($_SESSION['preview'])): ?>
 <main id="preview" class="menu">
 	<h1>Actions To Do</h1>
 	<p><?= $map[$world]['name'] ?? ''; ?></p>
