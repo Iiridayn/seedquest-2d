@@ -15,6 +15,11 @@
 					echo '<span class="scene-marker scene-marker-'.($j+1).'">'.($j+1).'</span>';
 				}
 			}
+		} else {
+			for ($j = 0; $j < count($_SESSION['worlds']); $j++) {
+				if ($_SESSION['worlds'][$j] == $i)
+					echo '<span class="scene-marker scene-marker-'.($j+1).'">'.($j+1).'</span>';
+			}
 		}
 	?>
 	</button></li>
