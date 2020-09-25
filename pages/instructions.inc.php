@@ -1,14 +1,13 @@
 <?php
-$_SESSION['ordered'] = false;
 $mode = $_SESSION['registered']['mode'];
 ?>
 <main id="instructions" class="document">
 <?php if (empty($_SESSION['decode'])): ?>
 <p>Thank you.</p>
 
-<p>SeedQuest is a game designed to make it easier to remember a large random sequence, such as a passphrase. You will be assigned a random passphrase, which you will enter into SeedQuest. SeedQuest will then give you a sequence of worlds and actions you will perform in those worlds, which we will ask you to remember in a follow up study 7 days later. We will also ask you to remember what you can of the assigned passphrase, so we can see how SeedQuest compares to a passphrase.</p>
+<p>SeedQuest is a game designed to make it easier to remember a large random sequence, such as a passphrase. You will be assigned a random passphrase, which you will enter into SeedQuest. SeedQuest will then give you a sequence of worlds and actions you will perform in those worlds, which we will ask you to remember in a follow up study some time later. We will also ask you to remember what you can of the assigned passphrase, so we can see how SeedQuest compares to a passphrase. Please memorize this passphrase as if it were the only key to a safe containing thousands of dollars - this is the expected use case.</p>
 
-<p>Your assigned passphrase is "<strong id="assigned"><?= $_SESSION['registered']['words'] ?></strong>". You will need to retype this into another browser window. Please do not copy this or write it down - we are testing how well SeedQuest helps you remember your passphrase.</p>
+<p>Your assigned passphrase is "<strong id="assigned"><?= $_SESSION['registered']['words'] ?></strong>". You will need to retype this into another browser window. Please do not copy this or write it down - we are testing how well SeedQuest helps you remember your passphrase. As we will be analyzing these assigned passphrases, please do not reuse your assigned passphrase outside of this study.</p>
 
 <?php if ($mode === 0): ?>
 <p>Please review the following instructions while SeedQuest is downloading in another browser tab. This may take up to about an hour on a slow ADSL connection. We suggest working on other tasks while this is downloading, and have factored in about 12 minutes of pay (equivalent to a 5 Mbit/s connection) for the inconvenience.</p>
