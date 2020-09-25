@@ -137,7 +137,6 @@ Once SeedQuest loads, you will click on “Decode Key”.
 <?= component('img', array('src' => 'tutorial/2d Decode Seed.png')) ?>
 <?php endif; ?>
 <p>Thank you for your participation. We (will) have a brief survey at the end here. Please remember you can skip answering any questions you may feel uncomfortable answering.</p>
-<?php endif; ?>
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can enter your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
 <?php else: ?>
@@ -150,3 +149,4 @@ Once SeedQuest loads, you will click on “Decode Key”.
 	<input type="submit">
 </form>
 </main>
+<?php endif; ?>
