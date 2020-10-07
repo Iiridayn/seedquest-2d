@@ -73,7 +73,7 @@ $positions = array( // states, details - which matches default state if 4
 		11 => [38, 96], // 4, model - 1
 		12 => [33, 31], // 4, model - 3
 		13 => [62, 59], // 5, model
-		14 => [28, 86], // 4, color swap, non-changing animation - 0
+		14 => [28, 86], // 4, color swap, not changing animation - 0
 		15 => [34, 49], // 5, picture swap
 	),
 	2 => array( // low res/poly; ?
