@@ -377,7 +377,7 @@ ol#worlds li {
 ol#worlds .scene-marker {
 	position: absolute;
 	top: 0.25em;
-	left: 0.25em;
+	left: 0.5em;
 	padding: 0.25em 0;
 	text-align: center;
 	width: 1em;
@@ -385,23 +385,23 @@ ol#worlds .scene-marker {
 	background-color: #40a9f5;
 }
 ol#worlds .scene-marker-2 {
-	left: calc(0.25em + ((100% - 1.5em)/6) * 2);
+	left: calc(0.5em + ((100% - 2em)/5) * 1);
 	background-color: #f4e740;
 }
 ol#worlds .scene-marker-3 {
-	left: calc(0.25em + ((100% - 1.5em)/6) * 3);
+	left: calc(0.5em + ((100% - 2em)/5) * 2);
 	background-color: #ef5126;
 }
 ol#worlds .scene-marker-4 {
-	left: calc(0.25em + ((100% - 1.5em)/6) * 4);
+	left: calc(0.5em + ((100% - 2em)/5) * 3);
 	background-color: #c52adb;
 }
 ol#worlds .scene-marker-5 {
-	left: calc(0.25em + ((100% - 1.5em)/6) * 5);
+	left: calc(0.5em + ((100% - 2em)/5) * 4);
 	background-color: #67d738;
 }
 ol#worlds .scene-marker-6 {
-	left: calc(0.25em + ((100% - 1.5em)/6) * 6);
+	left: calc(0.5em + ((100% - 2em)/5) * 5);
 	background-color: #1c35fa;
 }
 
