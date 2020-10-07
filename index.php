@@ -30,6 +30,13 @@ function requireCSRF() {
 	}
 }
 
+function restart() {
+	$clear = ['worlds', 'world', 'choices', 'preview', 'worlds', 'seed'];
+	foreach ($clear as $key)
+		unset($_SESSION[$key]);
+	redirect("/");
+}
+
 function component($name, $args = []) {
 	global $baseUrl;
 	ob_start();

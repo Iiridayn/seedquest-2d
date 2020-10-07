@@ -5,8 +5,7 @@ requireCSRF(); // So refreshing doesn't add more to the list
 $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 
 if (isset($_POST['reset'])) {
-	session_destroy();
-	redirect("/");
+	restart();
 }
 
 if (isset($_POST['start'])) {
