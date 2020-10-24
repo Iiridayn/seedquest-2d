@@ -5,14 +5,14 @@ $mode = $_SESSION['registered']['mode'];
 <?php if (empty($_SESSION['decode'])): ?>
 <p>Thank you.</p>
 
-<p>SeedQuest is a game designed to make it easier to remember a large random sequence, such as a passphrase. You will be assigned a random passphrase, which you will enter into SeedQuest. SeedQuest will then give you a <strong>sequence of worlds and actions</strong> you will perform in those worlds, which we will ask you to <strong>remember in a follow up study</strong> some time later. We will also ask you to <strong>remember what you can of the assigned passphrase</strong>, so we can see how SeedQuest compares to a passphrase. <strong>Please memorize this passphrase as if it were the only key to a safe containing thousands of dollars</strong> - this is the expected use case.</p>
+<p>SeedQuest is a game designed to make it easier to remember a large random sequence, such as a passphrase. You will be assigned a random passphrase, which you will enter into SeedQuest. SeedQuest will then give you a <strong>sequence of worlds and actions</strong> you will perform in those worlds, which we will ask you to <strong>remember in a follow up study</strong> some time later. We will also ask you to <strong>remember what you can of the assigned passphrase</strong>, so we can see how SeedQuest compares to a passphrase. <strong>Please memorize this passphrase as if it were the only code to a safe containing thousands of dollars</strong> - this is the expected use case.</p>
 
 <p>Your assigned passphrase is "<strong id="assigned"><?= $_SESSION['registered']['words'] ?></strong>". You will need to retype this into another browser window. Please do not copy this or write it down - we are testing how well SeedQuest helps you remember your passphrase. As we will be analyzing these assigned passphrases, please do not reuse your assigned passphrase outside of this study.</p>
 
 <?php if ($mode === 0): ?>
 <p>Please review the following instructions while SeedQuest is downloading in another browser tab. This may take up to about an hour on a slow ADSL connection. We suggest working on other tasks while this is downloading, and have factored in about 12 minutes of pay (equivalent to a 5 Mbit/s connection) for the inconvenience.</p>
 <p class="beta">Beta testers in the lab please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
-<p><a href="../build/" target="_blank">Click here to start SeedQuest</a></p>
+<p><a id="game" href="../build/" target="_blank">Click here to start SeedQuest</a></p>
 <?php endif; ?>
 
 <p>Once SeedQuest loads, you will click on “Encode Key”.</p>
@@ -101,8 +101,9 @@ $mode = $_SESSION['registered']['mode'];
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can retype your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can retype your password and reference the instructions as needed. Follow this link to <a href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
+<p>Now, leave this tab open so you can retype your password and reference the instructions as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
 <?php endif; ?>
+
 <?php else: // decode ?>
 <p>Next we’ll have you go through SeedQuest again, in Decode Key mode.<?php if ($mode === 0): ?> As before, please review the following instructions while waiting for SeedQuest to download in another tab.<?php endif; ?> Like with the passphrase, just make your best guess if you are having difficulty remembering your SeedQuest actions.</p>
 <?php if ($mode === 0): ?>
@@ -149,3 +150,16 @@ Once SeedQuest loads, you will click on “Decode Key”.
 </form>
 </main>
 <?php endif; ?>
+
+<script>
+window.addEventListener('load', function() {
+	console.log(window.screen.width, window.screen.height);
+	document.getElementById('game').addEventListener('click', function(e) {
+		e.preventDefault();
+		// 1080p doesn't work on either of my computers; thus, 720p should preserve aspect ratio and fit
+		// Note that UI scaling in Windows _does_ work
+		window.open(e.target.href, 'SeedQuest', 'width=1280,height=720,resizable=0');
+		return false;
+	});
+});
+</script>
