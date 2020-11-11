@@ -72,3 +72,4 @@ $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 	<?php endif; ?>
 <?php endif; ?>
 </form>
+<script src="<?= $baseUrl ?>world.js"></script>
