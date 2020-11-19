@@ -72,4 +72,6 @@ $world = isset($path[1]) ? $path[1] : $_SESSION['worlds'][$_SESSION['world']];
 	<?php endif; ?>
 <?php endif; ?>
 </form>
+<?php if ($_SESSION['ordered']): ?>
 <script src="<?= $baseUrl ?>world.js"></script>
+<?php endif; ?>
