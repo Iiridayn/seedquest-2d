@@ -1,12 +1,10 @@
 window.addEventListener('load', function() {
+	var maxLoops = 100; // usually 20-50 in Sorc Tower; pathological would never terminate
+
 	// can't have offsetLeft < 0, offsetLeft + offsetWidth > document.body.offsetWidth
 	// If overlap 2 in one direction, push this one 2x, etc
 	// draw lines, under the interactibles, to their original location
 
-	// TODO: retool to move in percentages, so we can resize the browser window safely
-	// Or - reset to initial position on resize and re-run
-	// Might have to do that for the canvas anyway
-	// TODO: test how this renders at different sizes/aspect ratios. Is it consistent?
 	var items = document.getElementsByClassName('item');
 	var container = document.getElementById('world');
 
@@ -191,7 +189,7 @@ window.addEventListener('load', function() {
 	function tweak() {
 		var foundOverlaps = findOverlaps();
 		//console.log(foundOverlaps);
-		if (!foundOverlaps[1] || instance++ > 500) {
+		if (!foundOverlaps[1] || instance++ > maxLoops) {
 			console.log(instance, 'loops');
 			return false;
 		}
@@ -266,6 +264,7 @@ window.addEventListener('load', function() {
 
 	reposition();
 
+	// Reset to initial position on resize and re-run
 	window.addEventListener('resize', function() {
 		// reset everything to initial position
 		for (var i = 0; i < items.length; i++) {
