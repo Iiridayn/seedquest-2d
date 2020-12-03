@@ -3,7 +3,6 @@ window.addEventListener('load', function() {
 	// If overlap 2 in one direction, push this one 2x, etc
 	// draw lines, under the interactibles, to their original location
 
-
 	// TODO: retool to move in percentages, so we can resize the browser window safely
 	// Or - reset to initial position on resize and re-run
 	// Might have to do that for the canvas anyway
@@ -189,25 +188,6 @@ window.addEventListener('load', function() {
 		return [overlaps, count];
 	}
 
-	function fixup() {
-		var percentPos = /(\d+)%/;
-		for (var i = 0; i < items.length; i++) {
-			var item = items[i];
-
-			if (item.offsetLeft < 0)
-				item.style.left = 0;
-			if ((item.offsetLeft + item.offsetWidth) > container.offsetWidth)
-				item.style.left = 'calc(100% - ' + item.offsetWidth + 'px)';
-			if (item.offsetTop < 0)
-				item.style.top = 0;
-			if ((item.offsetTop + item.offsetHeight) > container.offsetHeight)
-				item.style.top = 'calc(100% - ' + item.offsetHeight + 'px)';
-
-			item.dataset.top = parseFloat(item.style.top.match(percentPos)[1]) / 100;
-			item.dataset.left = parseFloat(item.style.left.match(percentPos)[1]) / 100;
-		}
-	}
-
 	function tweak() {
 		var foundOverlaps = findOverlaps();
 		//console.log(foundOverlaps);
@@ -261,11 +241,44 @@ window.addEventListener('load', function() {
 	});
 	*/
 
-	// fixup coords first
-	fixup();
+	function reposition() {
+		while (tweak()); // repeat until no overlaps remain
+		drawLines();
+	}
 
-	// repeat until no overlaps remain
-	while (tweak());
+	// fixup and store original coords before anything else
+	var percentPos = /(\d+)%/;
+	for (var i = 0; i < items.length; i++) {
+		var item = items[i];
 
-	drawLines();
+		if (item.offsetLeft < 0)
+			item.style.left = 0;
+		if ((item.offsetLeft + item.offsetWidth) > container.offsetWidth)
+			item.style.left = 'calc(100% - ' + item.offsetWidth + 'px)';
+		if (item.offsetTop < 0)
+			item.style.top = 0;
+		if ((item.offsetTop + item.offsetHeight) > container.offsetHeight)
+			item.style.top = 'calc(100% - ' + item.offsetHeight + 'px)';
+
+		item.dataset.top = parseFloat(item.style.top.match(percentPos)[1]) / 100;
+		item.dataset.left = parseFloat(item.style.left.match(percentPos)[1]) / 100;
+	}
+
+	reposition();
+
+	window.addEventListener('resize', function() {
+		// reset everything to initial position
+		for (var i = 0; i < items.length; i++) {
+			var item = items[i];
+			item.style.left = 'calc(' + (item.dataset.left * 100) + '% - ' + item.offsetWidth + 'px)';
+			item.style.top = (item.dataset.top * 100) + '%';
+		}
+		// clear canvas
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		canvas.width = container.offsetWidth;
+		canvas.height = container.offsetHeight;
+
+		instance = 0;
+		reposition();
+	});
 });
