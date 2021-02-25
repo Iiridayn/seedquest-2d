@@ -340,13 +340,18 @@ main#world.positions #choices .popup {
 
 /* World - unordered */
 main#world.list ul#item-list {
-	overflow-x: scroll;
-	white-space: nowrap;
+	margin-left: 1em;
+	width: calc(1200px + 7 * 0.25em);
 }
 main#world.list section h1 {
 	color: white;
 	text-shadow: black 0 0 0.3em;
+	margin-left: 1em;
 }
+main#world.list section#choices ul {
+	margin-left: 1em;
+}
+
 
 /* World - ordered */
 main#world.positions #items h1 {

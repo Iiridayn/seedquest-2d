@@ -1,5 +1,5 @@
 <?php
-$item_size = 200;
+$item_size = 150;
 if ($_SESSION['ordered'])
 	$item_size = 100;
 
