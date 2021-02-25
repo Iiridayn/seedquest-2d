@@ -3,7 +3,7 @@
 	<form method="post">
 		<?= makeCSRF() ?>
 		<h1>Encode Your Key</h1>
-		<p class="aside">Enter your seed below. It should be 33 hex characters long, or a set of 12 words with spaces.</p>
+		<p class="aside">Enter your seed below. It should be a set of <?= WORDS ?> words with spaces.</p>
 		<div id="input-wrapper">
 			<input type="text" name="words" autofocus value="<?= isset($_POST['words']) ? htmlspecialchars($_POST['words']) : '' ?>" onpaste="return false;" />
 			<img class="warning" src="<?= $baseUrl ?>img/warning.png" style="display: <?= isset($_POST['words']) ? 'block' : 'none' ?>" />

@@ -1,7 +1,9 @@
 <?php
 
-define('WORLDS', 6);
-define('ITEMS', 3);
+define('WORLDS', 2);
+define('ITEMS', 4);
+define('WORDS', 5);
+define('BITS', 55);
 
 $map = array();
 $f = fopen('Saved_data.csv', 'r');

@@ -312,7 +312,7 @@ main#world.positions #choices .popup {
 #preview ol li {
 	margin-right: 3em;
 	position: relative;
-	width: calc(100%/3 - 3.5em);
+	width: calc(100%/4 - 3.5em); /* 100%/ITEMS from config.inc.php */
 	max-width: 300px;
 }
 #preview .joiner {

@@ -22,13 +22,13 @@ if ($bytes === false) {
 echo "Bytes: " . bin2hex($bytes) . "\n";
 
 $bit = 0;
-for ($i = 0; $i < 6; $i++) {
+for ($i = 0; $i < WORLDS; $i++) {
 	// 4 bits select a scene
 	$scene = getbits($bytes, $bit, 4);
 	$bit += 4;
 	echo "$scene\t" . $map[$scene]['name'] . "\n";
 
-	for ($j = 0; $j < 3; $j++) {
+	for ($j = 0; $j < ITEMS; $j++) {
 		$interactible = getbits($bytes, $bit, 4);
 		$option = getbits($bytes, $bit + 4, 2);
 		$item = $map[$scene]['items'][$interactible];

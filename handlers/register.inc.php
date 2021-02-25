@@ -1,7 +1,7 @@
 <?php
 require('lib/bip39.php');
 $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
-list($words, $rand) = encode($dict, 12);
+list($words, $rand) = encode($dict, WORDS);
 
 $mode = random_int(0, 2);
 // XXX temp for demo; though so also is this whole page
