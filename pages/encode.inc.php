@@ -1,7 +1,7 @@
 <main id="encode-select" class="menu">
 	<a href="<?= $baseUrl ?>index.php">&larr; Back to SeedQuest</a>
 	<form method="post">
-		<input type="hidden" name="_csrf" value="<?= $_SESSION['csrf'] ?>" />
+		<?= makeCSRF() ?>
 		<h1>Encode Your Key</h1>
 		<p class="aside">Enter your seed below. It should be 33 hex characters long, or a set of 12 words with spaces.</p>
 		<div id="input-wrapper">
