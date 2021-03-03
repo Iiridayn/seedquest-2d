@@ -542,3 +542,8 @@ p.beta {
 strong#assigned {
 	user-select: none;
 }
+
+/* Code */
+#payment-code {
+	user-select: all;
+}

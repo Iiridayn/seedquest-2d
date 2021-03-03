@@ -23,6 +23,7 @@ else if ($mode === 2)
 
 $words = $record[3];
 
+$_SESSION['username'] = $_POST['username'];
 $_SESSION['decode'] = $data[0];
 $_SESSION['registered'] = compact('mode', 'words');
 

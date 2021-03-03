@@ -105,6 +105,7 @@ $mode = $_SESSION['registered']['mode'];
 <?php endif; ?>
 
 <?php else: // decode ?>
+
 <p>Next we’ll have you go through SeedQuest again, in Decode Key mode.<?php if ($mode === 0): ?> As before, please review the following instructions while waiting for SeedQuest to download in another tab.<?php endif; ?> Like with the passphrase, just make your best guess if you are having difficulty remembering your SeedQuest actions.</p>
 <?php if ($mode === 0): ?>
 <p><a href="../build/" target="_blank">Click here to start SeedQuest</a></p>
@@ -139,15 +140,9 @@ Once SeedQuest loads, you will click on “Decode Key”.
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can enter your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can enter your password and reference the instructions as needed. Follow this link to <a href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
+<p>Now, leave this tab open so you can reference the instructions as needed. Pleas use this link to <a href="<?= $baseUrl ?>index.php" target="_blank">open SeedQuest in a new window</a>.</p>
 <?php endif; ?>
-<p>Thank you for your participation. We (will) have a brief survey at the end here. Please remember you can skip answering any questions you may feel uncomfortable answering.</p>
-<form method="post" action="<?= $baseUrl ?>index.php/check">
-	<label for="assigned">Passphrase</label>
-	<input type="hidden" name="complete" value="true">
-	<input id="assigned" name="assigned" type="text">
-	<input type="submit">
-</form>
+<p>Once you have used SeedQuest to recover your passphrase, please <a href="<?= $baseUrl ?>index.php/outro">follow this link to complete the outro survey</a> so you can get paid - other than the recovered passphrase, please feel free to skip any questions if you are not comfortable answering them.</p>
 </main>
 <?php endif; ?>
 
