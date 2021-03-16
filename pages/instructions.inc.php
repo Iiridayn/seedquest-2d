@@ -1,5 +1,6 @@
 <?php
 $mode = $_SESSION['registered']['mode'];
+$spellout = new NumberFormatter('en', NumberFormatter::SPELLOUT);
 ?>
 <main id="instructions" class="document">
 <?php if (empty($_SESSION['decode'])): ?>
@@ -27,7 +28,7 @@ $mode = $_SESSION['registered']['mode'];
 <?= component('img', array('src' => 'tutorial/Correct Key.png')) ?>
 
 <p>Once you have entered your key correctly and the green circle with a checkmark appears, click on “Encode Key” - this will take you to the world selection screen.</p>
-<p>SeedQuest will assign a sequence of six worlds based on your assigned passphrase - find the world thumbnail with a small “1” in a box over it, and click on that world thumbnail. Repeat this process five more times until a blue “Continue” button appears below the world list. Due to random processes, it is fairly normal to be assigned the same world multiple times.</p>
+<p>SeedQuest will assign a sequence of <?= $spellout->format(WORLDS) ?> worlds based on your assigned passphrase - find the world thumbnail with a small “1” in a box over it, and click on that world thumbnail.<?php if (WORLDS > 1): ?> Repeat this process <?= $spellout->format(WORLDS - 1) ?> more time<?php if (WORLDS > 2): ?>s<?php endif; ?> until a blue “Continue” button appears below the world list. Due to random processes, you may be assigned the same world multiple times.<?php endif; ?></p>
 <?= component('img', array('src' => 'tutorial/World Selection Start - arrow.png')) ?>
 <?= component('img', array('src' => 'tutorial/World Selection Done.png')) ?>
 
@@ -54,9 +55,9 @@ $mode = $_SESSION['registered']['mode'];
 <?= component('img', array('src' => 'tutorial/2d Select.png')) ?>
 <?php elseif ($mode === 2): ?>
 <?= component('img', array('src' => 'tutorial/2d Random World.png')) ?>
-<p>Find your target in the top scrollbar - it will have the same label as the <strong>first</strong> line in the lower right corner of the screen. The selection list is randomized on each selection, to help you to remember the object instead of just the position of the object.</p>
+<p>Find your target in the grid of objects - it will have the same label as the <strong>first</strong> line in the lower right corner of the screen. This list is randomized on each selection, to help you to remember the object instead of just where you saw it.</p>
 
-<p>If you accidentally click something else, that's okay. You can't select an incorrect option from the second list during encoding mode - just find the correct item in the scroll bar and click that instead, and you will see the correct options.</p>
+<p>If you accidentally click something else, that's okay. You can't select an incorrect option from the second list during encoding mode - just find the correct item and click that instead, and you will see the correct options.</p>
 <?= component('img', array('src' => 'tutorial/2d Random Misclick.png')) ?>
 <?= component('img', array('src' => 'tutorial/2d Random Select.png')) ?>
 <?php endif; ?>
@@ -101,7 +102,7 @@ $mode = $_SESSION['registered']['mode'];
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can retype your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can retype your password and reference the instructions as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
+<p>Now, leave this tab open so you can see your password and reference the instructions as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>. You will be given your code after completing the encoding phase of the game, then we will ask you to return in a week. Please remember to treat this passphrase (and the corresponding sequence of actions) as though it were the only code to a safe containing thousands of dollars. It may help to make up a simple story focused on the words in the passphrase. After you are done, feel free to close the game window.</p>
 <?php endif; ?>
 
 <?php else: // decode ?>
@@ -140,7 +141,7 @@ Once SeedQuest loads, you will click on “Decode Key”.
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can enter your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can reference the instructions as needed. Pleas use this link to <a href="<?= $baseUrl ?>index.php" target="_blank">open SeedQuest in a new window</a>.</p>
+<p>Now, leave this tab open so you can reference the instructions as needed. Please use this link to <a href="<?= $baseUrl ?>index.php" target="_blank">open SeedQuest in a new window</a>.</p>
 <?php endif; ?>
 <p>Once you have used SeedQuest to recover your passphrase, please <a href="<?= $baseUrl ?>index.php/outro">follow this link to complete the outro survey</a> so you can get paid - other than the recovered passphrase, please feel free to skip any questions if you are not comfortable answering them.</p>
 </main>

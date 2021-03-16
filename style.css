@@ -87,6 +87,9 @@ main.document {
 main.document p:first-child {
 	margin-top: 0;
 }
+main.document p {
+	line-height: 1.4;
+}
 
 .form-footer {
 	text-align: center;

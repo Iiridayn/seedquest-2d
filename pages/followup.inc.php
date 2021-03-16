@@ -3,9 +3,10 @@ if (isset($_SESSION['registered']))
 	redirect('instructions');
 ?>
 <main class="document">
-<p>Thank you for beta testing our follow up study. Please enter the same username you entered before, so we can retrieve your assigned passphrase from our database. This will only be used during the beta period - live will link with Mechanical Turk user IDs.</p>
+<h1>Followup Study</h1>
+<p>Thank you for returning for the followup memory portion - we really appreciate it. Please re-enter your Mechanical Turk Worker Id so we can retrieve the passphrase you were assigned from our database - your worker id will be deleted at the conclusion of the data gathering phase of the study.</p>
 <form method="post">
-	<label for="username">Username</label>
+	<label for="username">Mechanical Turk Worker Id</label>
 	<input id="username" name="username" type="text">
 	<input type="submit">
 </form>

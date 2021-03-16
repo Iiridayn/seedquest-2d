@@ -71,6 +71,7 @@ $occupation = array(
 	'other' => "Other",
 );
 ?>
+<main class="document">
 <p>Thank you for your participation in this study.</p>
 <form method="post">
 	<?= makeCSRF() ?>
@@ -90,3 +91,4 @@ $occupation = array(
 
 	<input type="submit">
 </form>
+</main>
