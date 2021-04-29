@@ -17,6 +17,33 @@ function select($name, $label, $options) {
 	return $select;
 }
 
+$system = 'SeedQuest';
+$sus = array(
+	1 => 'I think that I would like to use this system frequently.',
+	'I found the system unnecessarily complex.',
+	'I thought the system was easy to use.',
+	'I think that I would need the support of a technical person to be able to use this system.',
+	'I found the various functions in this system were well integrated.',
+	'I thought there was too much inconsistency in this system.',
+	'I would imagine that most people would learn to use this system very quickly.',
+	'I found the system very cumbersome to use.',
+	'I felt very confident using the system.',
+	'I needed to learn a lot of things before I could get going with this system.',
+);
+function radio($name, $value) {
+	return '<input type="radio" name="' . $name . '" value="' . $value . '"'
+		. (isset($_POST[$name]) && $_POST[$name] == $value ? ' checked=checked' : '')
+		. ' />';
+}
+function sus($num) {
+	global $system, $sus;
+	$line = '<tr>'. "\n" . '<td>' . preg_replace('/(?:this|the) system/', $system, $sus[$num]) . '</td>' . "\n";
+	for ($i = 1; $i <= 5; $i++)
+		$line .= '<td>' . radio('sus' . $num, $i) . '</td>' . "\n";
+	$line .= '</tr>' . "\n";
+	return $line;
+}
+
 $genders = array(
 	'm' => "Male",
 	'f' => "Female",
@@ -34,14 +61,14 @@ $education = array(
 	'pre-hs' => "Some High School",
 	'hs' => "High School / GED",
 	'some-uni' => "Some University",
-	'assoc' => "Associatates Degree",
+	'assoc' => "Associates Degree",
 	'bs' => "Bachelors Degree",
 	'adv' => "Graduate Degree",
 	'other' => "Other",
 );
 // derived from https://www.bls.gov/soc/2018/soc_structure_2018.pdf
 $occupation = array(
-	'engineer' => "Architect, Engineer, Surveyer",
+	'engineer' => "Architect, Engineer, Surveyor",
 	'media' => "Art/Design/Entertainer/Journalist/Sports",
 	'business' => "Business: Executive, Management, Advertising, Marketing, PR, or HR",
 	'clerk' => "Clerk, Teller, Operator, Courier, Secretary, Data Entry, etc",
@@ -50,7 +77,7 @@ $occupation = array(
 	'education' => "Education: Teacher or Curator/Librarian",
 	'outdoors' => "Fishing/Farming/Forestry",
 	'food' => "Food preparation and service",
-	'health' => "Heathcare assistent, Massage Therapist",
+	'health' => "Healthcare assistant, Massage Therapist",
 	'homemaker' => "Homemaker",
 	'repair' => "Installation/Repair/Maintenance",
 	'legal' => "Legal: Lawyer, Judge, etc",
@@ -58,7 +85,7 @@ $occupation = array(
 	'medical' => "Medical professional, Dentist",
 	'mturk' => "Mechanical Turk Worker",
 	'military' => "Military",
-	'proudction' => "Production: Assembly, Baker, Butcher, Machinist, Caster, Printer, Laundry, Tailor, Woodworker, Plant operator",
+	'production' => "Production: Assembly, Baker, Butcher, Machinist, Caster, Printer, Laundry, Tailor, Woodworker, Plant operator",
 	'protect' => "Protection: Law enforcement, Firefighters, Security, etc",
 	'retired' => "Retired",
 	'sales' => "Sales, including Retail",
@@ -88,6 +115,25 @@ $occupation = array(
 		<?= select('education', 'Highest Completed Formal Education', $education); ?>
 		<?= select('occupation', 'Current occupation - primary source of income', $occupation); ?>
 	</dl>
+
+	<h2>System Usability Scale</h2>
+	<table id="sus">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Strongly Disagree</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>Strongly Agree</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php for ($i = 1; $i <= count($sus); $i++): ?>
+			<?= sus($i) ?>
+		<?php endfor; ?>
+		</tbody>
+	</table>
 
 	<input type="submit">
 </form>

@@ -90,6 +90,16 @@ main.document p:first-child {
 main.document p {
 	line-height: 1.4;
 }
+main.document h2 {
+	margin-bottom: 0;
+}
+main.document dd+dt {
+	margin-top: 2ex;
+}
+main.document select, main.document input {
+	font-family: inherit;
+	font-size: inherit;
+}
 
 .form-footer {
 	text-align: center;
@@ -549,4 +559,22 @@ strong#assigned {
 /* Code */
 #payment-code {
 	user-select: all;
+}
+
+/* Outro */
+#sus td:not(:first-child) {
+	width: 4.5em;
+	text-align: center;
+}
+#sus tbody tr {
+	height: 5ex;
+}
+#sus {
+	border-spacing: 0 1ex;
+}
+#sus tbody tr:nth-child(odd) {
+	background-color: #DDD;
+}
+#recovered {
+	width: 30em;
 }
