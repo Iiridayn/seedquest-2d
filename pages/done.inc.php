@@ -20,6 +20,10 @@ for ($i = 0; $i < WORLDS; $i++) {
 
 $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 $words = encode($dict, $index/8, $bits);
+
+// Give credit same way as 3d
+$_GET['words'] = $words;
+require(__DIR__ . '/../handlers/credit.inc.php');
 ?>
 <form method="post">
 <main id="done" class="menu">

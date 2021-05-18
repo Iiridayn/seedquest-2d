@@ -16,6 +16,7 @@ $f = fopen(__DIR__ . "/../database.csv", 'a');
 fputcsv($f, array($_POST['username'], date("Y-m-d H:i:s"), $mode, $words, bin2hex($rand)));
 fclose($f);
 
+$_SESSION['username'] = $_POST['username'];
 $_SESSION['registered'] = compact('mode', 'words');
 
 redirect('instructions');
