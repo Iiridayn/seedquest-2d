@@ -12,7 +12,9 @@ $spellout = new NumberFormatter('en', NumberFormatter::SPELLOUT);
 
 <?php if ($mode === 0): ?>
 <p>Please review the following instructions while SeedQuest is downloading in another browser tab. This may take up to about an hour on a slow ADSL connection. We suggest working on other tasks while this is downloading, and have factored in about 12 minutes of pay (equivalent to a 5 Mbit/s connection) for the inconvenience.</p>
-<p class="beta">Beta testers in the lab please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
+<?php if (defined('TESTING')): ?>
+<p class="beta">Beta testers please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
+<?php endif; ?>
 <p><a id="game" href="../build/" target="_blank">Click here to start SeedQuest</a></p>
 <?php endif; ?>
 

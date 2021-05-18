@@ -1,5 +1,8 @@
 <?php
 
+if (file_exists('testing'))
+	define('TESTING', true);
+
 define('WORLDS', 2);
 define('ITEMS', 4);
 define('WORDS', 5);
