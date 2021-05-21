@@ -111,7 +111,7 @@ $spellout = new NumberFormatter('en', NumberFormatter::SPELLOUT);
 
 <p>Next we’ll have you go through SeedQuest again, in Decode Key mode.<?php if ($mode === 0): ?> As before, please review the following instructions while waiting for SeedQuest to download in another tab.<?php endif; ?> Like with the passphrase, just make your best guess if you are having difficulty remembering your SeedQuest actions.</p>
 <?php if ($mode === 0): ?>
-<p><a href="../build/" target="_blank">Click here to start SeedQuest</a></p>
+<p><a id="game" href="../build/" target="_blank">Click here to start SeedQuest</a></p>
 <?php endif; ?>
 Once SeedQuest loads, you will click on “Decode Key”.
 <?= component('img', array('src' => 'tutorial/Main Menu - Decode Circle.png')) ?>
@@ -143,7 +143,7 @@ Once SeedQuest loads, you will click on “Decode Key”.
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can enter your password and reference the instructions as needed, and see if SeedQuest has finished loading in your other tab.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can reference the instructions as needed. Please use this link to <a href="<?= $baseUrl ?>index.php" target="_blank">open SeedQuest in a new window</a>.</p>
+<p>Now, leave this tab open so you can reference the instructions as needed. Please use this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">open SeedQuest in a new window</a>.</p>
 <?php endif; ?>
 <p>Once you have used SeedQuest to recover your passphrase, please <a href="<?= $baseUrl ?>index.php/outro">follow this link to complete the outro survey</a> so you can get paid - other than the recovered passphrase, please feel free to skip any questions if you are not comfortable answering them.</p>
 </main>
