@@ -245,7 +245,7 @@ window.addEventListener('load', function() {
 	}
 
 	// fixup and store original coords before anything else
-	var percentPos = /(\d+)%/;
+	var percentPos = /([\d.]+)%/;
 	for (var i = 0; i < items.length; i++) {
 		var item = items[i];
 
