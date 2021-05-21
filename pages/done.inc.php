@@ -32,7 +32,13 @@ require(__DIR__ . '/../handlers/credit.inc.php');
 	<section id="seed">
 		<?= $words ?>
 	</section>
-	<button name="reset">Back to Start Screen</button>
+	<button name="reset">
+	<?php if (isset($_SESSION['seed'])): ?>
+		Practice Again
+	<?php else: ?>
+		Back to Start Screen
+	<?php endif; ?>
+	</button>
 	<aside>
 		<p class="small">Not your seed? Your actions might not be in the correct order;<br />or you missed one or two.</p>
 		<p>You can always try again!</p>

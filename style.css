@@ -463,7 +463,7 @@ ol#selected li {
 	overflow: hidden;
 }
 ol#selected .empty {
-	background-color: grey;
+	background-color: #BECEDA;
 }
 ol#selected img {
 	width: 100%;
