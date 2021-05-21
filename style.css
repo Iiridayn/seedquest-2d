@@ -439,6 +439,10 @@ ol#worlds .scene-marker-6 {
 	position: relative;
 	top: 0.7em;
 }
+#world-selection button[name=undo] {
+	float: left;
+	font-size: 75%;
+}
 
 button[name="world"] {
 	position: relative;
@@ -464,6 +468,7 @@ ol#selected li {
 	width: calc(100%/6 - 5px);
 	height: 15em;
 	overflow: hidden;
+	border-radius: 5px;
 }
 ol#selected .empty {
 	background-color: #BECEDA;
