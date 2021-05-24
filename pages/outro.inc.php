@@ -44,6 +44,7 @@ function sus($num) {
 	return $line;
 }
 
+// TODO: add attention question
 $genders = array(
 	'm' => "Male",
 	'f' => "Female",
