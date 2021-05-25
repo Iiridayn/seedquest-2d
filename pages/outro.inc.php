@@ -1,4 +1,8 @@
 <?php
+
+if (empty($_SESSION['payment']))
+	redirect('instructions');
+
 function option($value, $label, $field) {
 	return '<option value="' . $value . '"' . (
 		isset($_POST[$field]) && $_POST[$field] == $value ? ' selected=selected' : ''
@@ -44,7 +48,7 @@ function sus($num) {
 	return $line;
 }
 
-// TODO: add attention question
+// TODO: add attention question; sth like "please select all services you have recently used a password on" - seedquest, youtube, facebook, twitter, google, youtwitter
 $genders = array(
 	'm' => "Male",
 	'f' => "Female",
@@ -106,7 +110,7 @@ $occupation = array(
 
 	<dl>
 		<dt><label for="recovered">Recovered passphrase</label> <span id="required"<?= !empty($_POST) && empty($_POST['recovered']) ? ' style="color: red"' : ''?>>(required)</span></dt>
-		<dd><input id="recovered" name="recovered" type="text" value="<?= !empty($_POST['recovered']) ? htmlspecialchars($_POST['recovered']) : '' ?>"></dd>
+		<dd><input id="recovered" name="recovered" type="text" value="<?= htmlspecialchars(!empty($_POST['recovered']) ? $_POST['recovered'] : (!empty($_SESSION['words-input']) ? $_SESSION['words-input'] : '')) ?>"></dd>
 	</dl>
 
 	<h2>Demographics</h2>

@@ -22,7 +22,8 @@ $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 $words = encode($dict, $index/8, $bits);
 
 // Give credit same way as 3d
-$_GET['words'] = $words;
+$_POST['words'] = $words;
+$_POST['encode'] = empty($_SESSION['decode']);
 require(__DIR__ . '/../handlers/credit.inc.php');
 ?>
 <form method="post">

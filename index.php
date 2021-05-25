@@ -62,6 +62,7 @@ function itemFilename($world, $which) {
 
 $baseUrl = substr($_SERVER['SCRIPT_NAME'], 0, stripos($_SERVER['SCRIPT_NAME'], 'index.php'));
 
+// NOTE - all handlers need a page
 $files = scandir('pages');
 $pages = [];
 foreach ($files as $file) {
