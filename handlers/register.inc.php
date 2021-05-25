@@ -1,4 +1,8 @@
 <?php
+
+if (empty($_POST['username']))
+	return false;
+
 require('lib/bip39.php');
 $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 list($words, $rand) = encode($dict, WORDS);
