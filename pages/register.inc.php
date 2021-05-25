@@ -11,7 +11,7 @@ if (isset($_SESSION['registered']))
 <p>Although we expect no immediate benefit to you by participating, we hope our research will improve understanding of memory and retention, which could result in easier and safer ways to log in to accounts in the future.</p>
 <p>By proceeding, you agree that you have read the above and want to participate in this study.</p>
 <?php if (defined('TESTING')): ?>
-<p class="beta">Beta testers please use any non-secret unique string you will remember when you return to decode mode. If you're testing multiple modes, I might suggest a username with a mode affix.</p>
+<p class="beta">Beta testers please use any non-secret unique string you will remember when you return to decode mode. If you're testing multiple modes, I suggest a username with a mode affix.</p>
 <?php endif; ?>
 <form method="post">
 	<label for="username">Mechanical Turk Worker Id</label>
