@@ -23,7 +23,7 @@ $words = encode($dict, $index/8, $bits);
 
 // Give credit same way as 3d
 $_POST['words'] = $words;
-$_POST['encode'] = empty($_SESSION['decode']);
+$_POST['encode'] = isset($_SESSION['seed']);
 require(__DIR__ . '/../handlers/credit.inc.php');
 ?>
 <form method="post">
