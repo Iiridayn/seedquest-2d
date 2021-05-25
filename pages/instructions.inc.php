@@ -73,7 +73,7 @@ default:
 <?= component('img', array('src' => 'tutorial/' . $prefix . '-encode-select.png')) ?>
 
 <p>You’ll see 4 options, one of which matches the <?php if ($mode === 0): ?>instructions<?php else: ?>second line<?php endif ?> in the lower right. Click on that item. <?php if ($mode !== 2): ?>Occasionally this will not produce a visible change, if set to an already visible state. <?php endif ?>You can be confident your click was recorded by the progress bar changing up top, and typically the target in the lower right will change as well (in rare cases you might interact with the same thing again - the progress bar is the surest indicator). Note that the lower right shows what the item should look like after you change it, so the <?php if ($mode === 0): ?>blue pin<?php else: ?>text below the picture<?php endif ?> is the best indicator of what to click on.</p>
-<p>Do your best to remember what you’ve clicked on - when you return SeedQuest won’t be able to tell you what to click on or where to go!</p>
+<p>Do your best to remember what you’ve clicked on - when you return SeedQuest won’t be able to tell you what to click on<?php if ($mode !== 2): ?> or where to go<?php endif; ?>!</p>
 
 <?= component('img', array('src' => 'tutorial/' . $prefix . '-encode-next.png')) ?>
 
@@ -86,7 +86,7 @@ default:
 <?php if ($mode === 0): ?>
 <p>Now, leave these instructions open so you can reference them and your password as needed, and continue once SeedQuest has finished loading in your other window.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can reference them and your password as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
+<p>Now, leave this tab open so you can reference these instructions and your password as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
 <?php endif; ?>
 <p>Once you have memorized your passphrase and key sequence to your satisfaction, ideally by encoding the key multiple times, the following link will give you <a href="<?= $baseUrl ?>index.php/code">your survey completion code</a>. Please remember to treat this passphrase (and the corresponding sequence of actions) as though it were the only code to a safe containing thousands of dollars. It may help to make up a simple story focused on the words in the passphrase. After you are done, feel free to close the game window.</p>
 
