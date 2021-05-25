@@ -75,6 +75,7 @@ if (isset($_POST['replay'])) {
 				'from' => ITEMS * WORLDS,
 			))],
 			['replace', '#items', component('item-list', compact('map', 'world', 'positions'))],
+			['run', 'seedQuestWorldRelayout'],
 		);
 		if (isset($_SESSION['seed']))
 			$actions []= ['replace', '#objective', component('objective', compact('map', 'world'))];

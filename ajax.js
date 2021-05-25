@@ -43,6 +43,15 @@ window.addEventListener('load', function() {
 				el.parentNode.removeChild(el);
 				el = undefined;
 				break;
+
+			case 'run':
+				// supports sending args as well
+				window[data[1]].apply(null, data.slice(2));
+				break;
+
+			default:
+				console.warn('Unrecognized ajax command:', action);
+				break;
 		}
 	}
 

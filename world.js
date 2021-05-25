@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+function seedQuestWorldRelayout() {
 	var maxLoops = 100; // usually 20-50 in Sorc Tower; pathological would never terminate
 
 	// can't have offsetLeft < 0, offsetLeft + offsetWidth > document.body.offsetWidth
@@ -280,4 +280,6 @@ window.addEventListener('load', function() {
 		instance = 0;
 		reposition();
 	});
-});
+}
+
+window.addEventListener('load', seedQuestWorldRelayout);
