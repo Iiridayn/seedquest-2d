@@ -563,6 +563,10 @@ p.beta {
 strong#assigned {
 	user-select: none;
 }
+a#game {
+	/* Credit https://developer.mozilla.org/en-US/docs/Web/API/Window/open#always_identify_links_that_will_create_or_will_re-use_a_new_secondary_window, implied permission */
+	cursor: url('img/cursor_newwindowsergeysokoloff.png'), auto;
+}
 
 /* Code */
 #payment-code {

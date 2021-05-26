@@ -30,7 +30,7 @@ default:
 <?php if (defined('TESTING')): ?>
 <p class="beta">Beta testers please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
 <?php endif; ?>
-<p><a id="game" href="../build/" target="_blank">Click here to start SeedQuest</a></p>
+<p><a id="game" href="../build/" target="game">Click here to start SeedQuest</a></p>
 <?php endif; ?>
 
 <!-- TODO: once loads is clunky for the insta-load -->
@@ -87,7 +87,7 @@ default:
 <?php if ($mode === 0): ?>
 <p>Now, leave these instructions open so you can reference them and your password as needed, and continue once SeedQuest has finished loading in your other window.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can reference these instructions and your password as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">continue on to SeedQuest</a>.</p>
+<p>Now, leave this tab open so you can reference these instructions and your password as needed. Follow this link to <a id="game" href="<?= $baseUrl ?>index.php" target="game">continue on to SeedQuest</a>.</p>
 <?php endif; ?>
 <p>Once you have memorized your passphrase and key sequence to your satisfaction, ideally by encoding the key multiple times, the following link will give you <a href="<?= $baseUrl ?>index.php/code">your survey completion code</a>. Please remember to treat this passphrase (and the corresponding sequence of actions) as though it were the only code to a safe containing thousands of dollars. It may help to make up a simple story focused on the words in the passphrase. After you are done, feel free to close the game window.</p>
 
@@ -95,7 +95,7 @@ default:
 
 <p>Next we’ll have you go through SeedQuest again, in Decode Key mode.<?php if ($mode === 0): ?> As before, please review the following instructions while waiting for SeedQuest to download in another tab.<?php endif; ?> Like with the passphrase, just make your best guess if you are having difficulty remembering your SeedQuest actions.</p>
 <?php if ($mode === 0): ?>
-<p><a id="game" href="../build/" target="_blank">Click here to start SeedQuest</a></p>
+<p><a id="game" href="../build/" target="game">Click here to start SeedQuest</a></p>
 <?php endif; ?>
 Once SeedQuest loads, you will click on “Decode Key”.
 <?= component('img', array('src' => 'tutorial/' . ($mode === 0 ? 3 : 2) . 'd-main-decode.png')) ?>
@@ -114,7 +114,7 @@ Once SeedQuest loads, you will click on “Decode Key”.
 <?php if ($mode === 0): ?>
 <p>Now, leave this tab open so you can enter your password and reference the instructions as needed, and continue once SeedQuest has finished loading in your other window.</p>
 <?php else: ?>
-<p>Now, leave this tab open so you can reference the instructions as needed. Please use this link to <a id="game" href="<?= $baseUrl ?>index.php" target="_blank">open SeedQuest in a new window</a>.</p>
+<p>Now, leave this tab open so you can reference the instructions as needed. Please use this link to <a id="game" href="<?= $baseUrl ?>index.php" target="game">open SeedQuest in a new window</a>.</p>
 <?php endif; ?>
 
 <p>Once you have used SeedQuest to recover your passphrase, please <a href="<?= $baseUrl ?>index.php/outro">follow this link to complete the outro survey</a> so you can get paid - other than the recovered passphrase, please feel free to skip any questions if you are not comfortable answering them.</p>
@@ -128,7 +128,8 @@ window.addEventListener('load', function() {
 		e.preventDefault();
 		// 1080p doesn't work on either of my computers; thus, 720p should preserve aspect ratio and fit
 		// Note that UI scaling in Windows _does_ work
-		window.open(e.target.href, 'SeedQuest', 'width=1280,height=720,resizable=0');
+		var gameWindow = window.open(e.target.href, 'SeedQuest', 'width=1280,height=720,resizable=0');
+		gameWindow.focus();
 		return false;
 	});
 });
