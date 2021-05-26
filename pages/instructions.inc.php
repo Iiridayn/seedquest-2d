@@ -25,7 +25,8 @@ default:
 <p>Your assigned passphrase is "<strong id="assigned"><?= $_SESSION['registered']['words'] ?></strong>". You will need to retype this into another browser window. Please do not copy this or write it down - we are testing how well SeedQuest helps you remember your passphrase. As we will be analyzing these assigned passphrases, please do not reuse your assigned passphrase outside of this study.</p>
 
 <?php if ($mode === 0): ?>
-<p>Please review the following instructions while SeedQuest is downloading in another browser tab. This should take around 8 minutes, but could take up to an hour on a slow ADSL connection. We suggest working on other tasks while this is downloading, and will award a $2 bonus, equivalent to download time on a 5 Mbit/s connection, for the inconvenience.</p>
+<?php // < 1 min local, < 2.5 gb of ram. Instructions seem to take 4.333 min to read; 10 mbit should be enough ?>
+<p>Please review the following instructions while SeedQuest is downloading in another browser tab. At the slowest recommened connection speed, this should take roughly the same as the time to read the instructions. If the download takes longer, we suggest working on other tasks while waiting for it to load.</p>
 <?php if (defined('TESTING')): ?>
 <p class="beta">Beta testers please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
 <?php endif; ?>
