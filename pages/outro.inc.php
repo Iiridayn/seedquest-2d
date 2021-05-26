@@ -48,6 +48,7 @@ function sus($num) {
 	return $line;
 }
 
+// TODO: did you write it down? Will not impact pay, for data analysis
 // TODO: add attention question; sth like "please select all services you have recently used a password on" - seedquest, youtube, facebook, twitter, google, youtwitter
 $genders = array(
 	'm' => "Male",
