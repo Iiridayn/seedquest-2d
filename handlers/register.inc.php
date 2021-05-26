@@ -18,7 +18,7 @@ else if ($mode === 2)
 
 $f = fopen(__DIR__ . "/../database.csv", 'a');
 fputcsv($f, array(
-	$_POST['username'], date("Y-m-d H:i:s"), $_SERVER['REMOTE_ADDR'], $mode, $words, bin2hex($rand)
+	$_POST['username'], date("Y-m-d H:i:s"), $mode, $words, bin2hex($rand), $_SERVER['REMOTE_ADDR'],
 ));
 fclose($f);
 
