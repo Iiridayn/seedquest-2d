@@ -28,7 +28,7 @@ require(__DIR__ . '/../handlers/credit.inc.php');
 ?>
 <form method="post">
 <main id="done" class="menu">
-	<h1>Seed Encoded! <img src="<?= $baseUrl ?>img/clappinghands2.png" alt="clapping hands" /></h1>
+	<h1>Seed <?= isset($_SESSION['seed']) ? 'En' : 'De' ?>coded! <img src="<?= $baseUrl ?>img/clappinghands2.png" alt="clapping hands" /></h1>
 	<p>You may copy it <!-- or download your seed -->below.</p>
 	<section id="seed">
 		<?= $words ?>

@@ -7,7 +7,9 @@ if (!isset($_SESSION['worlds']))
 	<main id="world-selection" class="menu">
 		<div><button class="link" name="back">&larr; Back</button></div>
 		<h1>World Selection</h1>
+		<?php if (!isset($_SESSION['seed'])): ?>
 		<p class="desc">Select the worlds in the same sequence as when you encoded your key.</p>
+		<?php endif; ?>
 		<?= component('world-buttons', compact('map', 'world_thumbs')) ?>
 		<ol id="selected">
 		<?php for ($i = 0; $i < WORLDS; $i++): ?>
