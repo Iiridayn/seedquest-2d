@@ -3,11 +3,9 @@
 if ($_POST['encode'] != empty($_SESSION['decode']))
 	return; // no credit if they used the wrong mode
 
-if (empty($_SESSION['payment'])) {
-	require_once('lib/bip39.php');
-	$dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
-	list($code, $rand) = encode($dict, 2);
-	$_SESSION['payment'] = $code;
+if (!isset($_SESSION['payment'])) {
+	// Hex, to minimize possible conflict w/assigned string passphrase
+	$_SESSION['payment'] = bin2hex(random_bytes(3)); // 24 bits, 4 9's odds of no collision for 300 participants
 }
 
 $f = fopen(__DIR__ . "/../credit.csv", 'a');

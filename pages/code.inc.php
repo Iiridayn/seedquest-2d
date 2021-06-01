@@ -1,5 +1,5 @@
 <?php
-if (empty($_SESSION['payment']))
+if (!isset($_SESSION['payment']))
 	redirect('instructions');
 ?>
 <main class="document">

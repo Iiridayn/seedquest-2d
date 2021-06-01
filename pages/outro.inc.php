@@ -1,6 +1,6 @@
 <?php
 
-if (empty($_SESSION['payment']))
+if (!isset($_SESSION['payment']))
 	redirect('instructions');
 
 function option($value, $label, $field) {
