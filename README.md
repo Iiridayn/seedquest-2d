@@ -8,6 +8,10 @@ Run `setup.sh` in the lib submodule to get the wordlist.
 
 Requires GD for the placeholder script; might be fine without.
 
+## TODO
+
+* Some unresolved issues with Safari and the popup - for now leave it and track in data analysis
+
 ## Notes
 
 `set filename 3d-world-decode-next.png ; import $filename; convert $filename -crop +0+27! -shave 1x1 $filename` to get screenshots
