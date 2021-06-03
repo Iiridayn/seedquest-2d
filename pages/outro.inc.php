@@ -34,22 +34,21 @@ $sus = array(
 	'I felt very confident using the system.',
 	'I needed to learn a lot of things before I could get going with this system.',
 );
-function radio($name, $value) {
-	return '<input type="radio" name="' . $name . '" value="' . $value . '"'
-		. (isset($_POST[$name]) && $_POST[$name] == $value ? ' checked=checked' : '')
-		. ' />';
+function radio($value, $label, $field) {
+	return '<label><input type="radio" name="' . $field . '" value="' . $value . '"' . (
+		isset($_POST[$field]) && $_POST[$field] == $value ? ' checked=checked' : ''
+	) . ' />' . $label . '</label>';
 }
+
 function sus($num) {
 	global $system, $sus;
 	$line = '<tr>'. "\n" . '<td>' . preg_replace('/(?:this|the) system/', $system, $sus[$num]) . '</td>' . "\n";
 	for ($i = 1; $i <= 5; $i++)
-		$line .= '<td>' . radio('sus' . $num, $i) . '</td>' . "\n";
+		$line .= '<td>' . radio($i, '', 'sus' . $num) . '</td>' . "\n";
 	$line .= '</tr>' . "\n";
 	return $line;
 }
 
-// TODO: did you write it down? Will not impact pay, for data analysis
-// TODO: add attention question; sth like "please select all services you have recently used a password on" - seedquest, youtube, facebook, twitter, google, youtwitter
 $genders = array(
 	'm' => "Male",
 	'f' => "Female",
@@ -114,12 +113,14 @@ $occupation = array(
 		<dd><input id="recovered" name="recovered" type="text" value="<?= htmlspecialchars(!empty($_POST['recovered']) ? $_POST['recovered'] : (!empty($_SESSION['words-input']) ? $_SESSION['words-input'] : '')) ?>"></dd>
 	</dl>
 
-	<h2>Demographics</h2>
+	<h2>Questionnaire</h2>
 	<dl>
-		<?= select('gender', 'Gender', $genders); ?>
-		<?= select('age', 'Age', $ages); ?>
-		<?= select('education', 'Highest Completed Formal Education', $education); ?>
-		<?= select('occupation', 'Current occupation - primary source of income', $occupation); ?>
+	<?php // TODO: add attention question; sth like "please select all services you have recently used a password on" - seedquest, youtube, facebook, twitter, google, youtwitter ?>
+		<dt><div>Did you write or save your passphrase anywhere?</div> <small>(this is for analysis only and will not change your compensation)</small></dt>
+		<dd class="radio">
+			<?= radio('yes', 'Yes', 'write') ?>
+			<?= radio('no', 'No', 'write') ?>
+		</dd>
 	</dl>
 
 	<h2>System Usability Scale</h2>
@@ -140,6 +141,14 @@ $occupation = array(
 		<?php endfor; ?>
 		</tbody>
 	</table>
+
+	<h2>Demographics</h2>
+	<dl>
+		<?= select('gender', 'Gender', $genders); ?>
+		<?= select('age', 'Age', $ages); ?>
+		<?= select('education', 'Highest Completed Formal Education', $education); ?>
+		<?= select('occupation', 'Current occupation - primary source of income', $occupation); ?>
+	</dl>
 
 	<input type="submit">
 </form>
