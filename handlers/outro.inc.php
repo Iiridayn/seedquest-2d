@@ -19,6 +19,7 @@ fputcsv($f, array(
 	$_POST['sus4'] ?? null, $_POST['sus5'] ?? null, $_POST['sus6'] ?? null,
 	$_POST['sus7'] ?? null, $_POST['sus8'] ?? null, $_POST['sus9'] ?? null,
 	$_POST['sus10'] ?? null,
+	$_POST['write'] ?? null,
 	$_SESSION['payment'], $_SESSION['words-input'],
 ));
 fclose($f);
