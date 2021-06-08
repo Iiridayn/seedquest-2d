@@ -70,7 +70,7 @@ foreach ($files as $file) {
 		$pages []= substr($file, 0, -8);
 }
 
-$path = isset($_SERVER['PATH_INFO']) ? explode('/', substr($_SERVER['PATH_INFO'], 1)) : [];
+$path = !empty($_SERVER['PATH_INFO']) ? explode('/', substr($_SERVER['PATH_INFO'], 1)) : [];
 $default = file_exists('followup') ? 'followup' : 'index';
 $page = $path[0] ?? $default;
 if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
