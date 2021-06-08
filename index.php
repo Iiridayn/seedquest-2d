@@ -71,7 +71,8 @@ foreach ($files as $file) {
 }
 
 $path = isset($_SERVER['PATH_INFO']) ? explode('/', substr($_SERVER['PATH_INFO'], 1)) : [];
-$page = $path[0] ?? 'index';
+$default = file_exists('followup') ? 'followup' : 'index';
+$page = $path[0] ?? $default;
 if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
 	$page = 'index';
 
