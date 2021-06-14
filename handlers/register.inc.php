@@ -16,7 +16,7 @@ if ($mode === 1)
 else if ($mode === 2)
 	$_SESSION['ordered'] = false;
 
-$f = fopen(__DIR__ . "/../database.csv", 'a');
+$f = fopen(__DIR__ . "/../register.csv", 'a');
 fputcsv($f, array(
 	$_POST['username'], date("Y-m-d H:i:s"), $mode, $words, bin2hex($rand), $_SERVER['REMOTE_ADDR'],
 	$_SERVER['HTTP_USER_AGENT'], $_POST['javascript']

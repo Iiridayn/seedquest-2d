@@ -3,7 +3,7 @@
 if (empty($_POST['username']))
 	return;
 
-$f = fopen(__DIR__ . '/../database.csv', 'r');
+$f = fopen(__DIR__ . '/../register.csv', 'r');
 $record = null;
 while (($data = fgetcsv($f)) !== false) {
 	if ($data[0] === $_POST['username']) {
