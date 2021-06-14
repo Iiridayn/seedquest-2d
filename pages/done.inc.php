@@ -22,9 +22,12 @@ $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 $words = encode($dict, $index/8, $bits);
 
 // Give credit same way as 3d
-$_POST['words'] = $words;
-$_POST['encode'] = isset($_SESSION['seed']);
-require(__DIR__ . '/../handlers/credit.inc.php');
+if (!isset($_SESSION['credit'])) {
+	$_POST['words'] = $words;
+	$_POST['encode'] = isset($_SESSION['seed']);
+	require(__DIR__ . '/../handlers/credit.inc.php');
+	$_SESSION['credit'] = true;
+}
 ?>
 <form method="post">
 <main id="done" class="menu">
