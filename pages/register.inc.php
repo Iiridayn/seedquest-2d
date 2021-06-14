@@ -16,6 +16,12 @@ if (isset($_SESSION['registered']))
 <form method="post">
 	<label for="username">Mechanical Turk Worker Id</label>
 	<input id="username" name="username" type="text">
+	<input id="javascript" name="javascript" type="hidden" value="no" />
 	<input type="submit">
 </form>
+<script>
+window.addEventListener('load', function() {
+	document.getElementById('javascript').value = "yes";
+});
+</script>
 </main>
