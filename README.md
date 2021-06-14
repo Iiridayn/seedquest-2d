@@ -11,7 +11,6 @@ Requires GD for the placeholder script; might be fine without.
 ## TODO
 
 * Some unresolved issues with Safari and the popup - for now leave it and track in data analysis
-* Replace "file_exists" checks with a single .env file setting mode variables
 
 ## Notes
 

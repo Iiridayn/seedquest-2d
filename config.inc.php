@@ -1,7 +1,12 @@
 <?php
 
-if (file_exists('testing'))
-	define('TESTING', true);
+if (!file_exists('.env'))
+	die('Env file missing');
+$env = parse_ini_file('.env');
+$valid_env = isset($env['mode']) && in_array($env['mode'], ['registration', 'followup', 'final'])
+	&& isset($env['testing']);
+if (!$valid_env)
+	die('Env file missing valid mode or testing mode');
 
 define('WORLDS', 2);
 define('ITEMS', 4);

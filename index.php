@@ -71,15 +71,16 @@ foreach ($files as $file) {
 }
 
 $path = !empty($_SERVER['PATH_INFO']) ? explode('/', substr($_SERVER['PATH_INFO'], 1)) : [];
-$default = 'index';
-if (file_exists('followup') && !isset($_SESSION['registered']))
-	$default = 'followup';
-$page = $path[0] ?? $default;
+$page = $path[0] ?? 'index';
 if (!in_array($page, $pages)) // could merge w/the foreach above; premature optimization?
 	$page = 'index';
 
-if (!isset($_SESSION['registered']) && $page !== 'followup')
-	$page = 'register';
+if (!isset($_SESSION['registered'])) {
+	if ($env['mode'] !== 'registration' && $page !== 'followup')
+		$page = 'followup';
+	else if ($page !== 'register')
+		$page = 'register';
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && file_exists('handlers/'.$page.'.inc.php')) {
 	require('handlers/'.$page.'.inc.php');

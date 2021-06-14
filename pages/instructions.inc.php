@@ -27,7 +27,7 @@ default:
 <?php if ($mode === 0): ?>
 <?php // < 1 min local, < 2.5 gb of ram. Instructions seem to take 4.333 min to read; 10 mbit should be enough ?>
 <p>Please review the following instructions while SeedQuest is downloading in another browser tab. At the slowest recommened connection speed, this should take roughly the same as the time to read the instructions. If the download takes longer, we suggest working on other tasks while waiting for it to load.</p>
-<?php if (defined('TESTING')): ?>
+<?php if ($env['testing']): ?>
 <p class="beta">Beta testers please note how long SeedQuest takes to download and report that and your ISP reported connection speed back to Michael.</p>
 <?php endif; ?>
 <p><a id="game" href="../build/" target="game">Click here to start SeedQuest</a></p>

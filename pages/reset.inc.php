@@ -1,5 +1,5 @@
 <?php
-if (!defined('TESTING'))
+if (!$env['testing'])
 	redirect('instructions');
 
 session_destroy();

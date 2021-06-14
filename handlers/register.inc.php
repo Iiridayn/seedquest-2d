@@ -8,7 +8,7 @@ $dict = file('lib/english.txt', FILE_IGNORE_NEW_LINES);
 list($words, $rand) = encode($dict, WORDS);
 
 $mode = random_int(0, 2);
-if (defined('TESTING') && isset($_GET['mode']) && in_array($_GET['mode'], [0,1,2]))
+if ($env['testing'] && isset($_GET['mode']) && in_array($_GET['mode'], [0,1,2]))
 	$mode = (int) $_GET['mode'];
 
 if ($mode === 1)

@@ -10,7 +10,7 @@ if (isset($_SESSION['registered']))
 <p>While we don’t expect any risks, either physical or mental, you are welcome to stop at any time should you feel uncomfortable. You are also free to choose not to participate. If you choose to stop participating we will not use any data from your participation and will delete it, and will not be able to compensate you for time spent.</p>
 <p>Although we expect no immediate benefit to you by participating, we hope our research will improve understanding of memory and retention, which could result in easier and safer ways to log in to accounts in the future.</p>
 <p>By proceeding, you agree that you have read the above and want to participate in this study.</p>
-<?php if (defined('TESTING')): ?>
+<?php if ($env['testing']): ?>
 <p class="beta">Beta testers please use any non-secret unique string you will remember when you return to decode mode. If you're testing multiple modes, I suggest a username with a mode affix.</p>
 <?php endif; ?>
 <form method="post">
