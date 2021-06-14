@@ -31,9 +31,6 @@ function requireCSRF() {
 }
 
 function restart() {
-	$clear = ['worlds', 'world', 'choices', 'preview', 'worlds', 'seed', 'credit'];
-	foreach ($clear as $key)
-		unset($_SESSION[$key]);
 	redirect("/");
 }
 

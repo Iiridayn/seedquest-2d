@@ -1,3 +1,9 @@
+<?php
+// Clear these here, so closing/reopening is another way to restart
+$clear = ['worlds', 'world', 'choices', 'preview', 'worlds', 'seed', 'credit'];
+foreach ($clear as $key)
+	unset($_SESSION[$key]);
+?>
 <main id="mode-select" class="menu"><form method="post">
 	<img id="biglogo" src="<?= $baseUrl ?>img/logo-cropped.png" />
 	<h1>SeedQuest</h1>
