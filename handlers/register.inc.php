@@ -16,7 +16,15 @@ if ($mode === 1)
 else if ($mode === 2)
 	$_SESSION['ordered'] = false;
 
-$f = fopen(__DIR__ . "/../register.csv", 'a');
+$db_file = __DIR__ . "/../register.csv";
+$write_header = !file_exists($db_file) || !filesize($db_file);
+$f = fopen($db_file, 'a');
+if ($write_header) {
+	fputcsv($f, array(
+		"MTurk Id", "Registered", "Mode", "Passphrase", "Entropy", "IP",
+		"User Agent", "JS Enabled",
+	));
+}
 fputcsv($f, array(
 	$_POST['username'], date("Y-m-d H:i:s"), $mode, $words, bin2hex($rand), $_SERVER['REMOTE_ADDR'],
 	$_SERVER['HTTP_USER_AGENT'], $_POST['javascript']

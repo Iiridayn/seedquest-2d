@@ -26,5 +26,6 @@ $words = $record[3];
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['decode'] = $data[0];
 $_SESSION['registered'] = compact('mode', 'words');
+$_SESSION['returned'] = date("Y-m-d H:i:s");
 
 redirect('check');
