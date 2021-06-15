@@ -16,7 +16,7 @@ $write_header = !file_exists($db_file) || !filesize($db_file);
 $f = fopen($db_file, 'a');
 if ($write_header) {
 	fputcsv($f, array(
-		"MTurk Id", "Registered", "Passphrase",
+		"MTurk Id", "Finished", "Passphrase",
 		"Followup", "Decode", "Code",
 	));
 }
