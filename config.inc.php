@@ -1,5 +1,6 @@
 <?php
 
+chdir(__DIR__);
 if (!file_exists('.env'))
 	die('Env file missing');
 $env = parse_ini_file('.env');

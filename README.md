@@ -22,4 +22,16 @@ Need to add `<script src="../report.js"></script>` to the `<head>` of `build/ind
 
 Deploy: `rsync -avz --delete Saved_data.csv *.js *.php *.css *.ini build components handlers img lib pages <server>:<dir>`
 
-To trigger testing mode, `touch testing` in the site root.
+Pixelated Decoded screen w/a 260x24 rectangle at 160x412 (x210 for 2d mode) in Gimp w/Filters->Blur->Pixelize, block width/height at 5px
+- Still looks somewhat like language (good), might provide some usable information w/riser height/character density (bad), but hopefully not enough to impact results.
+
+## .env
+
+See config.inc.php for details. `mode` is required, and must be one of the below
+options. If `testing` is present, the site shows additional information for
+those testing the study, and enables some testing/debug features to clear the
+session and to choose the mode.
+```
+mode = {registration|followup|final}
+(testing = true)
+```
