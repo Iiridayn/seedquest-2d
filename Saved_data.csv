@@ -16,7 +16,7 @@ Scene ID,Scene Name,Scene Label,Scene File,Interactable ID,Interactable Name,Obj
 0,Campgrounds,Cabin,Campground Iso,14,Hobby,CampDraft_Paper,null,"Blueprints",null,"Car Design",null,"Comics",null,"Novel",null
 0,Campgrounds,Cabin,Campground Iso,15,Kitchen Sink,CampKitchen_Clean,null,"Clean",CampKitchen_Clean,"Dirty",CampKitchen_Dirty,"On Fire",CampKitchen_OnFire,"Wash Cat",CampKitchen_WashCat
 1,Cafe,Cafe,Cafe,0,Customer,Cafe_Human,CafeCustomer_Human,"Ghost",CafeCustomer_Ghost,"Pirate",CafeCustomer_Pirate,"Human",CafeCustomer_Human,"Child",CafeCustomer_Teen
-1,Cafe,Cafe,Cafe,1,Barista,Cafe_BaristaItem,Cafe_Barista_NoItem,"""Here's your coffee!"" ",Cafe_Barista_Coffee,"""That's $98 in change.""",Cafe_Barista_Cash,"""Did you lose a toy?""",Cafe_Barista_Toy,"""Here's the bathroom key.""",Cafe_Barista_Key
+1,Cafe,Cafe,Cafe,1,Barista,Cafe_BaristaItem,Cafe_Barista_NoItem,"""Here's your coffee!""",Cafe_Barista_Coffee,"""That's $98 in change.""",Cafe_Barista_Cash,"""Did you lose a toy?""",Cafe_Barista_Toy,"""Here's the bathroom key.""",Cafe_Barista_Key
 1,Cafe,Cafe,Cafe,2,News Stand,Newstand,Cafe_Newstand,"Community Board",Cafe_News_CommunityBoard,"TV ",Cafe_News_TV,"Radio",Cafe_News_Radio,"Tabloids",Cafe_News_Tabloid
 1,Cafe,Cafe,Cafe,3,Pastry Case,PastryCase,Cafe_PastryCase_Macaron,"Steamed Buns",Cafe_PastryCase_Buns,"Panini",Cafe_PastryCase_Panini,"Gelato",Cafe_PastryCase_Gelato,"Macaron",Cafe_PastryCase_Macaron
 1,Cafe,Cafe,Cafe,4,Someone's Laptop,Cafe_Laptop_Open,Cafe_Laptop_Open,"Close Laptop",Cafe_Laptop_Closed,"Open",Cafe_Laptop_Open,"Change Screensaver",Cafe_Laptop_Screensaver,"Draw on Laptop",Cafe_Laptop_Draw
